@@ -22,7 +22,8 @@ def play_game():
         game_over = game.check_win(game.board, player)
         
 
-    
+    if game.play_again():
+        play_game()
    
 
 if __name__ == '__main__':

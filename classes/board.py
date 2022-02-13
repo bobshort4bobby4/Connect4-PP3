@@ -103,8 +103,7 @@ class Board():
 
     def check_win(self, board, player):
         """ checks if game is won and returns a boolean"""
-        
-        print("in checkwin  function piece is ", player.piece)
+       
     #check rows for line of 4
         temp  = 0
         for i in range(6): 
@@ -156,3 +155,22 @@ class Board():
                     self.draw_board()
                     print('\033[0;32m' + f"{player.piece} has won!  Congratulations {player.name}" + '\033[39m' )
                     return True
+
+    def play_again(self):
+        """ asks for user input as they want to play again """
+
+        # print("  Enter 'Quit' to finish or 'again' to play again")
+        ans = ""
+        lowerans = ans.lower()
+        valid_input = False
+        while not valid_input:
+            ans = input("Enter 'Quit' to finish or 'again' to play again : ")
+            lowerans = ans.lower()
+            if lowerans == "quit":
+                valid_input = True
+                print("BYEBYE!")
+                exit()
+            elif lowerans == "again":
+                valid_input = True
+        return True
+        
