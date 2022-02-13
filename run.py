@@ -70,8 +70,10 @@ class Board():
         if player.name == "Computer":
             invalid_col = True
             while invalid_col:
-                col = random.randint(0,7)
-            return col
+                col = random.randint(0,6)
+                if self.board[0][col] == "_":
+                    invalid_col = False
+            return col, player.piece
 
         col = 11
         while(col < 0) or(col > 6):
@@ -93,10 +95,78 @@ class Board():
             except IndexError:
                     print("Enter a NUMBER in range 0-6")
                  
-        return col
+        return col, player.piece
+
+    def insert_piece(self, choice, player_piece):
+        for row in range(5, -1, -1):
+            if self.board[row][choice] == "_":
+                self.board[row][choice] = player_piece
+                break
+        return
+
+    def check_draw(self, board):
+        strboard = str(board)
+        temp = strboard.count("_")
+        if temp > 0:
+            return False
+        else:
+            print(" The game is a DRAW! Human hang your head in SHAME.")
+            return True
 
 
+    def check_win(self, board, player):
+        print("in checkwin  function piece is ", player.piece)
+    #check rows for line of 4
+        temp  = 0
+        for i in range(6): 
+            for j in range(4):
+                if self.board[i][j] == player.piece and self.board[i][j+1] == player.piece and self.board[i][j+2] == player.piece and self.board[i][j+3] == player.piece:
+                    self.board[i][j] = '\033[31m' + player.piece + '\033[39m'
+                    self.board[i][j+1] = '\033[31m' + player.piece + '\033[39m'
+                    self.board[i][j+2] = '\033[31m' + player.piece + '\033[39m'
+                    self.board[i][j+3] = '\033[31m' + player.piece + '\033[39m'
+                    self.draw_board()
+                    print('\033[0;32m' + f"{player.piece} has won!  Congratulations {player.name}" + '\033[39m' )
+                    return True
 
+    # check column for line of 4
+
+        for i in range(7):
+            for j in range(3):
+                if self.board[j][i] == player.piece and self.board[j + 1][i] == player.piece and self.board[j + 2][i] == player.piece and self.board[j + 3][i] == player.piece:
+                    self.board[j][i] = '\033[31m' + player.piece + '\033[39m'
+                    self.board[j+1][i] = '\033[31m' + player.piece + '\033[39m'
+                    self.board[j+2][i] = '\033[31m' + player.piece + '\033[39m'
+                    self.board[j+3][i] = '\033[31m' + player.piece + '\033[39m'
+                    self.draw_board()
+                    print('\033[0;32m' + f"{player.piece} has won!  Congratulations {player.name}" + '\033[39m' )
+                    return True
+
+    # check forwards  diagonals for line of 4
+   
+        for i in range(3,6):
+            for j in range(0,4):
+                if self.board[i][j] == player.piece and self.board[i-1][j+1] == player.piece and self.board[i-2][j+2] == player.piece and self.board[i-3][j+3] == player.piece:
+                    self.board[i][j] = '\033[31m' + player.piece + '\033[39m'
+                    self.board[i-1][j+1] = '\033[31m' + player.piece + '\033[39m'
+                    self.board[i-2][j+2] = '\033[31m' + player.piece + '\033[39m'
+                    self.board[i-3][j+3] = '\033[31m' + player.piece + '\033[39m'
+                    self.draw_board()
+                    print('\033[0;32m' + f"{player.piece} has won!  Congratulations {player.name}" + '\033[39m' )
+                    return True
+
+    # check backwards diagonals for line of 4 
+
+        for i in range(3,6):
+            for j in range(6,2,-1):
+                if board[i][j] == player.piece and self.board[i-1][j-1] == player.piece and self.board[i-2][j-2] == player.piece and self.board[i-3][j-3] == player.piece:
+                    self.board[i][j] = '\033[31m' + player.piece + '\033[39m'
+                    self.board[i-1][j-1] = '\033[31m' + player.piece + '\033[39m'
+                    self.board[i-2][j-2] = '\033[31m' + player.piece + '\033[39m'
+                    self.board[i-3][j-3] = '\033[31m' + player.piece + '\033[39m'
+                    self.draw_board()
+                    print('\033[0;32m' + f"{player.piece} has won!  Congratulations {player.name}" + '\033[39m' )
+                    return True
 
 
 
@@ -107,20 +177,26 @@ def play_game():
     if first == 1:
         player1 = PLAYER("Human", "x")
         player2 = PLAYER("Computer", "0")
-        print("Human to go first")
+        print( "\033[5;31m" + "Human to go first" + '\033[39m')
     else:
         player1 = PLAYER("Computer", "x")
         player2 = PLAYER("Human", "0")
-        print("Computer to go first")
+        print( "\033[5;31m" + "\033[5m" + " Computer to go first" + '\033[39m' )
 
+    if player1.name == "Human":
+        game.draw_board()
 
     while not game_over:
         player = game.whose_turn(player1,player2)
-        choice = game.take_move(player)
-        game_over =True
+        choice, piece_type= game.take_move(player)
+        game.insert_piece(choice, piece_type)
+        game.draw_board()
+        game_over = game.check_draw(game.board)
+        game_over = game.check_win(game.board, player)
+        
 
     
-    game.draw_board()
+   
 
 if __name__ == '__main__':
     play_game()
