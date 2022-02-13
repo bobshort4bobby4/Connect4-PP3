@@ -1,5 +1,5 @@
 import sys
-path_to_module = "/workspace/mini-project-python/classes"
+path_to_module = "classes/"
 sys.path.append(path_to_module)
 from error import *
 

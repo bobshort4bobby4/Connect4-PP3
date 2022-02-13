@@ -10,7 +10,7 @@ def play_game():
     game_over = False
     player1 = {} 
     player2 = {}
-    player1, player2 = PLAYER.determine_first(player1, player2,game)
+    player1, player2 = PLAYER.determine_first(player1, player2, game)
     
 
     while not game_over:
