@@ -2,8 +2,10 @@ import sys
 path_to_module = "classes/"
 sys.path.append(path_to_module)
 from error import *
+from ClearMixin import *
 
-class Board():
+
+class Board(ClearMixin):
     """
     build the board the game is played on
     and methods to play game
@@ -29,12 +31,12 @@ class Board():
 
     def draw_board(self):
         """ draws the current state of game to screen"""
-
+        self.clrscr()
         print("")
-        print( "               0 1 2 3 4 5 6 ")
-        print( "           __________________")
+        print( "                                   0 1 2 3 4 5 6 ")
+        print( "                               __________________")
         for i in range(6):
-                print("          ",i, "~", end="|")
+                print("                              ",i, "~", end="|")
                 for j in range(7):
                         print(self.board[i][j], end="|")
                 print("")
@@ -50,7 +52,7 @@ class Board():
             self.number_turns += 1
         return player
 
-    def take_move(self, player, level ):
+    def take_move(self, player, level, player1, player2 ):
         """ determines what column the player wants to play and returns it"""
 
         col = 11
@@ -59,13 +61,14 @@ class Board():
                 col = player.computer_move_random(self.board)
                 return col, player.piece
             elif level == "medium":
-                col = player.computer_move_scored(player, self.board)
+                col = player.computer_move_scored(player, self.board, player1, player2)
                 return col, player.piece
 
         col = 11
         while(col < 0) or(col > 6):
             try:
-                col = int(input(f"{player.name} pick a column to drop an {player.piece}: "))
+                print("")
+                col = int(input(f"  {player.name} pick a column to drop an {player.piece}: "))
                                 
                 if col < 0 or col > 6:
                     raise IndexError("between 1 and 6")
@@ -74,13 +77,13 @@ class Board():
                     raise ColumnFullError
 
             except ValueError:
-                    print("Enter a NUMBER in range 0-6")
+                    print("  Enter a NUMBER in range 0-6")
            
             except ColumnFullError:
-                    print("column full")
+                    print("  Column full")
                     
             except IndexError:
-                    print("Enter a NUMBER in range 0-6")
+                    print("  Enter a NUMBER in range 0-6")
                  
         return col, player.piece
 
@@ -101,7 +104,7 @@ class Board():
         if temp > 0:
             return False
         else:
-            print(" The game is a DRAW! Human hang your head in SHAME.")
+            print("  The game is a DRAW! Human hang your head in SHAME.")
             return True
 
 
@@ -118,7 +121,7 @@ class Board():
                     self.board[i][j+2] = '\033[31m' + player.piece + '\033[39m'
                     self.board[i][j+3] = '\033[31m' + player.piece + '\033[39m'
                     self.draw_board()
-                    print('\033[0;32m' + f"{player.piece} has won!  Congratulations {player.name}" + '\033[39m' )
+                    print('\033[0;32m' + f"  {player.piece} has won!  Congratulations {player.name}" + '\033[39m' )
                     return True
 
     # check column for line of 4
@@ -131,7 +134,7 @@ class Board():
                     self.board[j+2][i] = '\033[31m' + player.piece + '\033[39m'
                     self.board[j+3][i] = '\033[31m' + player.piece + '\033[39m'
                     self.draw_board()
-                    print('\033[0;32m' + f"{player.piece} has won!  Congratulations {player.name}" + '\033[39m' )
+                    print('\033[0;32m' + f"  {player.piece} has won!  Congratulations {player.name}" + '\033[39m' )
                     return True
 
     # check forwards  diagonals for line of 4
@@ -144,7 +147,7 @@ class Board():
                     self.board[i-2][j+2] = '\033[31m' + player.piece + '\033[39m'
                     self.board[i-3][j+3] = '\033[31m' + player.piece + '\033[39m'
                     self.draw_board()
-                    print('\033[0;32m' + f"{player.piece} has won!  Congratulations {player.name}" + '\033[39m' )
+                    print('\033[0;32m' + f"  {player.piece} has won!  Congratulations {player.name}" + '\033[39m' )
                     return True
 
     # check backwards diagonals for line of 4 
@@ -157,7 +160,7 @@ class Board():
                     self.board[i-2][j-2] = '\033[31m' + player.piece + '\033[39m'
                     self.board[i-3][j-3] = '\033[31m' + player.piece + '\033[39m'
                     self.draw_board()
-                    print('\033[0;32m' + f"{player.piece} has won!  Congratulations {player.name}" + '\033[39m' )
+                    print('\033[0;32m' + f"  {player.piece} has won!  Congratulations {player.name}" + '\033[39m' )
                     return True
 
     def play_again(self):
@@ -168,11 +171,11 @@ class Board():
         lowerans = ans.lower()
         valid_input = False
         while not valid_input:
-            ans = input("Enter 'Quit' to finish or 'again' to play again : ")
+            ans = input("  Enter 'Quit' to finish or 'again' to play again : ")
             lowerans = ans.lower()
             if lowerans == "quit":
                 valid_input = True
-                print("BYEBYE!")
+                print("  BYEBYE!")
                 exit()
             elif lowerans == "again":
                 valid_input = True

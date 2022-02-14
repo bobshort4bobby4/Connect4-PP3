@@ -34,8 +34,13 @@ class PLAYER:
                 invalid_col = False
         return col
 
-    def computer_move_scored(self, player, board):
+    def computer_move_scored(self, player, board,player1, player2):
         final_scores = []
+        if player.piece == player1.piece: # get opposing piece to implement blocking move scoring 
+            op_piece = player2.piece
+        else:
+            op_piece = player1.piece
+
         valid_cols = []   # get valid columns to score
         for col in range(7):
             if board[0][col] == "_":
@@ -55,14 +60,14 @@ class PLAYER:
             if valid_cols[index] != -1:
                 temp_board = copy.deepcopy(board)
                 temp_board[first_available_row[index]][valid_cols[index]] = player.piece
-                final_scores.append( player.scoring_function(temp_board,player,index))
+                final_scores.append( player.scoring_function(temp_board,player,index, op_piece))
             else:
                 final_scores.append(-1)
 
         col = final_scores.index(max(final_scores))
         return col
 
-    def scoring_function(self, temp_board, player, col):
+    def scoring_function(self, temp_board, player, col, op_piece):
         score = 0
         for i in range(5, -1,-1): # score rows do each row in turn in blocks of 4
             row_array = list(temp_board[i])
@@ -78,6 +83,8 @@ class PLAYER:
                     score += 10
                 elif slice4.count(player.piece) == 1 and slice4.count("_") == 3:
                     score += 10
+                if slice4.count(op_piece) == 3 and slice4.count(player.piece) == 1:
+                    score += 1900
         # check column for line of 4
 
         for i in range(7):
@@ -85,8 +92,8 @@ class PLAYER:
             for j in range(5, -1,-1):
                 t = temp_board[j][i]
                 column_array.append(t)
-            for j in range(4):
-                slice4 = row_array[j:j+4]
+            for j in range(3):
+                slice4 = column_array[j:j+4]
                 if slice4.count(player.piece) == 4:
                     score+= 200
                 elif slice4.count(player.piece) == 3 and slice4.count("_") == 1:
@@ -97,7 +104,8 @@ class PLAYER:
                     score += 10
                 elif slice4.count(player.piece) == 1 and slice4.count("_") == 3:
                     score += 10  
-
+                if slice4.count(op_piece) == 3 and slice4.count(player.piece) == 1:
+                    score += 1900
             # for j in range(3):
                 # if self.board[j][i] == player.piece and self.board[j + 1][i] == player.piece and self.board[j + 2][i] == player.piece and self.board[j + 3][i] == player.piece:  
                     

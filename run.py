@@ -15,7 +15,7 @@ def play_game():
 
     while not game_over:
         player = game.whose_turn(player1,player2)
-        choice, piece_type = game.take_move(player, level)
+        choice, piece_type = game.take_move(player, level, player1, player2)
         game.insert_piece(choice, piece_type)
         game.draw_board()
         game_over = game.check_draw(game.board)
