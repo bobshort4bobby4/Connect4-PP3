@@ -1,4 +1,52 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+
+computer_move_scored()
+
+get array of valid columns
+get array of first available row positions ifor each valid column
+for each valid column drop apiece into first row position using tempboard
+            send this temp board to be scored for each position returning a score for that column to be stored in an scored array
+            take highest score from scored array and return as best column for computer to drop piece
+
+
+
+How to score ???
+re- use winning position code
+
+set score to zero
+use .count  method to count x and o in each batch of 4 add to score or not for each batch
+when all position scored return score to be stored in scored array
+
+looks suspiciously simple!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+computer_![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 Welcome bobshort4bobby4,
 

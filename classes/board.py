@@ -50,13 +50,17 @@ class Board():
             self.number_turns += 1
         return player
 
-    def take_move(self, player ):
+    def take_move(self, player, level ):
         """ determines what column the player wants to play and returns it"""
 
         col = 11
         if player.name == "Computer":
-            col = player.computer_move_random(self.board)
-            return col, player.piece
+            if level == "easy":
+                col = player.computer_move_random(self.board)
+                return col, player.piece
+            elif level == "medium":
+                col = player.computer_move_scored(player, self.board)
+                return col, player.piece
 
         col = 11
         while(col < 0) or(col > 6):
