@@ -64,6 +64,9 @@ class PLAYER:
             else:
                 final_scores.append(-1)
 
+
+         
+
         col = final_scores.index(max(final_scores))
         return col
 
@@ -106,6 +109,36 @@ class PLAYER:
                     score += 10  
                 if slice4.count(op_piece) == 3 and slice4.count(player.piece) == 1:
                     score += 1900
+
+
+        # forwards diagonals scoring
+
+
+
+        for i in range(3,6):
+            diagfor_array = []
+            for p in range(i + 1):
+                t = temp_board[i-p][p]
+                diagfor_array.append(t)
+            for j in range(len(diagfor_array)-3):
+                slice4 = diagfor_array[j:j+4]
+                if slice4.count(player.piece) == 4:
+                    score+= 200
+                elif slice4.count(player.piece) == 3 and slice4.count("_") == 1:
+                    score += 150
+                elif slice4.count(player.piece) == 2 and slice4.count("_") > 1:
+                    score += 25
+                elif col == 3:
+                    score += 10
+                elif slice4.count(player.piece) == 1 and slice4.count("_") == 3:
+                    score += 10  
+                if slice4.count(op_piece) == 3 and slice4.count(player.piece) == 1:
+                    score += 1900
+
+            
+        #        for i in range(3,6):
+        #    for j in range(0,4):
+        #        if self.board[i][j] == player.piece and self.board[i-1][j+1] == player.piece and self.board[i-2][j+2] == player.piece and self.board[i-3][j+3] == player.piece:
             # for j in range(3):
                 # if self.board[j][i] == player.piece and self.board[j + 1][i] == player.piece and self.board[j + 2][i] == player.piece and self.board[j + 3][i] == player.piece:  
                     

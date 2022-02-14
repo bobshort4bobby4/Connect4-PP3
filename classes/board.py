@@ -164,7 +164,7 @@ class Board(ClearMixin):
                     return True
 
     def play_again(self):
-        """ asks for user input as they want to play again """
+        """ asks for user input if they want to play again """
 
         # print("  Enter 'Quit' to finish or 'again' to play again")
         ans = ""
