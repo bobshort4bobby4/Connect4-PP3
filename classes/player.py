@@ -1,6 +1,12 @@
 import random
+import sys
 import copy
-class PLAYER:
+import time
+path_to_module = "classes/"
+sys.path.append(path_to_module)
+from ClearMixin import *
+
+class PLAYER(ClearMixin):
     """
     the players of the game
     """
@@ -8,23 +14,34 @@ class PLAYER:
     def __init__(self, name,piece):
         self.name = name
         self.piece = piece
+    
 
     @staticmethod
-    def determine_first(player1,player2, game):
-        first = random.randint(1, 2)
+    def init_game(game):
+
+        """
+        Function to decide which player starts,
+        display intro screen
+        and take user input re difficulty level
+        returns both player objects and level variable
+        """
+        pause = 2
+        level = game.display_intro()
+        first = random.randint(1, 2) # decides play order, creates players
         if first == 1:
             player1 = PLAYER("Human", "x")
             player2 = PLAYER("Computer", "0")
             print( "\033[5;31m" + "Human to go first" + '\033[39m')
+            time.sleep(pause)
         else:
             player1 = PLAYER("Computer", "x")
             player2 = PLAYER("Human", "0")
             print( "\033[5;31m" + "\033[5m" + " Computer to go first" + '\033[39m' )
-
-        if player1.name == "Human":
-            game.draw_board()
+            time.sleep(pause)
         
-        return player1, player2
+        ClearMixin().clrscr()
+        game.draw_board()
+        return player1, player2, level
 
     def computer_move_random (self,board):
         invalid_col = True
@@ -83,7 +100,7 @@ class PLAYER:
                 elif slice4.count(player.piece) == 2 and slice4.count("_") > 1:
                     score += 25
                 elif col == 3:
-                    score += 10
+                    score += 5
                 elif slice4.count(player.piece) == 1 and slice4.count("_") == 3:
                     score += 10
                 if slice4.count(op_piece) == 3 and slice4.count(player.piece) == 1:
@@ -104,7 +121,7 @@ class PLAYER:
                 elif slice4.count(player.piece) == 2 and slice4.count("_") > 1:
                     score += 25
                 elif col == 3:
-                    score += 10
+                    score += 5
                 elif slice4.count(player.piece) == 1 and slice4.count("_") == 3:
                     score += 10  
                 if slice4.count(op_piece) == 3 and slice4.count(player.piece) == 1:
@@ -129,7 +146,7 @@ class PLAYER:
                 elif slice4.count(player.piece) == 2 and slice4.count("_") > 1:
                     score += 25
                 elif col == 3:
-                    score += 10
+                    score += 5
                 elif slice4.count(player.piece) == 1 and slice4.count("_") == 3:
                     score += 10  
                 if slice4.count(op_piece) == 3 and slice4.count(player.piece) == 1:

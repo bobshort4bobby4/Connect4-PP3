@@ -1,4 +1,5 @@
 import sys
+import pyfiglet
 path_to_module = "classes/"
 sys.path.append(path_to_module)
 from error import *
@@ -13,6 +14,8 @@ class Board(ClearMixin):
     def __init__(self):
         self.board = self.build()
         self.number_turns = 2
+        self.game_Over = False
+        
         
 
     def build(self):
@@ -40,7 +43,61 @@ class Board(ClearMixin):
                 for j in range(7):
                         print(self.board[i][j], end="|")
                 print("")
+
+    def display_intro(self):
+        """
+        displays intro screen and takes difficulty level from user
+        returns level
+        """
+        self.clrscr()
+        player1 = {}
+        player2 = {}
+        print('\033[93m')
+        title = pyfiglet.figlet_format( "                       Connect 4")
+        print(title)
+        print("A version of the classic board game 'Connect4', first sold in 1974.")
+        print("There are over 4.5 trillion combinations of tiles possible on the standard 6 by 7 board.")
+        print("The object of the game is to connect four of your colour tiles in a line, the  line can be in any direction.")
+        print("If all the pieces are used before a line is found the game is a draw")
+        print('\033[39m')
+        
+        input("  Press Enter To Continue...")
+
+        self.clrscr()
+        question = pyfiglet.figlet_format("   Two difficulty levels are provided " )
+        question2 = pyfiglet.figlet_format(" 1. Easy ")
+        question3 = pyfiglet.figlet_format(" 2. Medium")
+        print('\033[93m')
+        #print(question)
+        print("TWO DIFFICULTY LEVELS ARE AVAILABLE ")
+        print(question2, question3)
+        # print(question3)
+        cond = True  
+        while cond:
+            try:
+                ans = int(input("Enter 1 for Easy or 2 for Medium :"))
+                if type(int(ans)) is int and ans == 1 or ans == 2:
+                    cond = False
+                if not type(ans) is int:
+                    raise TypeError("Only integers are allowed")
                 
+            except TypeError:
+                print("Please the digit 1 or the digit 2 ")
+            except ValueError:
+                print("Please the digit 1 or the digit 2 ")
+            
+        print('\033[39m')
+      
+        if int(ans) == 1:
+            level = "easy"
+        else:
+            level = "medium"
+
+        return level
+
+       
+
+
     def whose_turn(self, player1, player2):
         """ determines whose turn it is and returns the answer"""
 
@@ -175,7 +232,10 @@ class Board(ClearMixin):
             lowerans = ans.lower()
             if lowerans == "quit":
                 valid_input = True
-                print("  BYEBYE!")
+                print('\033[31m')
+                bye = pyfiglet.figlet_format("          BYE BYE  ")
+                print(bye)
+                print('\033[39m')
                 exit()
             elif lowerans == "again":
                 valid_input = True

@@ -1,5 +1,5 @@
-import random
 
+import random
 from classes.player import PLAYER
 from classes.board import Board
 
@@ -7,19 +7,15 @@ from classes.board import Board
 
 def play_game():
     game = Board()
-    game_over = False
-    player1 = {} 
-    player2 = {}
-    player1, player2 = PLAYER.determine_first(player1, player2, game)
-    level = "medium"
+    player1, player2, level = PLAYER.init_game(game)
 
-    while not game_over:
+    while not game.game_Over:
         player = game.whose_turn(player1,player2)
         choice, piece_type = game.take_move(player, level, player1, player2)
         game.insert_piece(choice, piece_type)
         game.draw_board()
-        game_over = game.check_draw(game.board)
-        game_over = game.check_win(game.board, player)
+        game.game_Over = game.check_draw(game.board)
+        game.game_Over = game.check_win(game.board, player)
         
 
     if game.play_again():

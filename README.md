@@ -16,7 +16,11 @@ set score to zero
 use .count  method to count x and o in each batch of 4 add to score or not for each batch
 when all position scored return score to be stored in scored array
 
-looks suspiciously simple!
+get index of highest dore in scored array and use for column choice
+
+
+forwards diagonal scoring is imperfect, it does not score diagonals starting at 51 53 or 54 another loop would need to be made for these.
+it is a medium level of difficulty so may not implement . same issue will be on backwards diagonals if i use similiar loops.
 
 
 
