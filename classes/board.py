@@ -61,7 +61,7 @@ class Board(ClearMixin):
         print("If all the pieces are used before a line is found the game is a draw")
         print('\033[39m')
         
-        input("  Press Enter To Continue...")
+        input("  Press Enter To Continue...\n")
 
         self.clrscr()
         question = pyfiglet.figlet_format("   Two difficulty levels are provided " )
@@ -75,7 +75,7 @@ class Board(ClearMixin):
         cond = True  
         while cond:
             try:
-                ans = int(input("Enter 1 for Easy or 2 for Medium :"))
+                ans = int(input("Enter 1 for Easy or 2 for Medium :\n"))
                 if type(int(ans)) is int and ans == 1 or ans == 2:
                     cond = False
                 if not type(ans) is int:
@@ -125,7 +125,7 @@ class Board(ClearMixin):
         while(col < 0) or(col > 6):
             try:
                 print("")
-                col = int(input(f"  {player.name} pick a column to drop an {player.piece}: "))
+                col = int(input(f"  {player.name} pick a column to drop an {player.piece} "))
                                 
                 if col < 0 or col > 6:
                     raise IndexError("between 1 and 6")
@@ -228,7 +228,7 @@ class Board(ClearMixin):
         lowerans = ans.lower()
         valid_input = False
         while not valid_input:
-            ans = input("  Enter 'Quit' to finish or 'again' to play again : ")
+            ans = input("  Enter 'Quit' to finish or 'again' to play again : \n")
             lowerans = ans.lower()
             if lowerans == "quit":
                 valid_input = True
