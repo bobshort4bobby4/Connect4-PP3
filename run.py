@@ -4,8 +4,11 @@ from classes.player import PLAYER
 from classes.board import Board
 
 
-
 def play_game():
+    """ 
+    controls program flow
+    """
+
     game = Board()
     player1, player2, level = PLAYER.init_game(game)
 
@@ -17,7 +20,6 @@ def play_game():
         game.game_Over = game.check_draw(game.board)
         game.game_Over = game.check_win(game.board, player)
         
-
     if game.play_again():
         play_game()
    

@@ -15,7 +15,6 @@ class PLAYER(ClearMixin):
         self.name = name
         self.piece = piece
     
-
     @staticmethod
     def init_game(game):
 
@@ -43,7 +42,13 @@ class PLAYER(ClearMixin):
         game.draw_board()
         return player1, player2, level
 
+
     def computer_move_random (self,board):
+        """
+        generates totally random computer moves
+        returns column choice
+        """
+
         invalid_col = True
         while invalid_col:
             col = random.randint(0,6)
@@ -51,7 +56,12 @@ class PLAYER(ClearMixin):
                 invalid_col = False
         return col
 
+
     def computer_move_scored(self, player, board,player1, player2):
+        """ 
+        Generates computer moves based on a simple position scoring system
+        returns column choice
+        """
         final_scores = []
         if player.piece == player1.piece: # get opposing piece to implement blocking move scoring 
             op_piece = player2.piece
@@ -66,47 +76,40 @@ class PLAYER(ClearMixin):
 
         first_available_row = []  # get lowest row position for each  valid column to score
         for col in valid_cols:
-            for row in range(5,-1,-1):
-                if board[row][col] == "_":
-                    first_available_row.append(row)
-                    break
+            if int(col) != -1:
+                for row in range(5,-1,-1):
+                    if board[row][col] == "_":
+                        first_available_row.append(row)
+                        break
+            else:
+                first_available_row.append(0)
                 
-
-        
-        for index in range(len(valid_cols)):
-            if valid_cols[index] != -1:
+        for index in range(len(valid_cols)): # make  copy of the board, drops a piece in each playable position 
+            if valid_cols[index] != -1:      # and sends it to be scored
                 temp_board = copy.deepcopy(board)
                 temp_board[first_available_row[index]][valid_cols[index]] = player.piece
-                final_scores.append( player.scoring_function(temp_board,player,index, op_piece))
+                final_scores.append( player.scoring_function(temp_board,player,index, op_piece)) # stores the returned scores with a -1 value in full columns
             else:
                 final_scores.append(-1)
-
-
-         
 
         col = final_scores.index(max(final_scores))
         return col
 
+
+
     def scoring_function(self, temp_board, player, col, op_piece):
+        """ 
+        scores each position in the temporary board
+        returns the score for that board
+        """
         score = 0
         for i in range(5, -1,-1): # score rows do each row in turn in blocks of 4
             row_array = list(temp_board[i])
             for j in range(4):
                 slice4 = row_array[j:j+4]
-                if slice4.count(player.piece) == 4:
-                    score+= 200
-                elif slice4.count(player.piece) == 3 and slice4.count("_") == 1:
-                    score += 150
-                elif slice4.count(player.piece) == 2 and slice4.count("_") > 1:
-                    score += 25
-                elif col == 3:
-                    score += 5
-                elif slice4.count(player.piece) == 1 and slice4.count("_") == 3:
-                    score += 10
-                if slice4.count(op_piece) == 3 and slice4.count(player.piece) == 1:
-                    score += 1900
-        # check column for line of 4
+                score += self.scoring_logic(player, slice4, col, op_piece)
 
+        # check column for line of 4
         for i in range(7):
             column_array = []
             for j in range(5, -1,-1):
@@ -114,52 +117,54 @@ class PLAYER(ClearMixin):
                 column_array.append(t)
             for j in range(3):
                 slice4 = column_array[j:j+4]
-                if slice4.count(player.piece) == 4:
-                    score+= 200
-                elif slice4.count(player.piece) == 3 and slice4.count("_") == 1:
-                    score += 150
-                elif slice4.count(player.piece) == 2 and slice4.count("_") > 1:
-                    score += 25
-                elif col == 3:
-                    score += 5
-                elif slice4.count(player.piece) == 1 and slice4.count("_") == 3:
-                    score += 10  
-                if slice4.count(op_piece) == 3 and slice4.count(player.piece) == 1:
-                    score += 1900
-
+                score += self.scoring_logic(player, slice4, col, op_piece)
 
         # forwards diagonals scoring
-
-
-
-        for i in range(3,6):
-            diagfor_array = []
+            for i in range(3,6):
+                diagfor_array = []
             for p in range(i + 1):
                 t = temp_board[i-p][p]
                 diagfor_array.append(t)
             for j in range(len(diagfor_array)-3):
                 slice4 = diagfor_array[j:j+4]
-                if slice4.count(player.piece) == 4:
-                    score+= 200
-                elif slice4.count(player.piece) == 3 and slice4.count("_") == 1:
-                    score += 150
-                elif slice4.count(player.piece) == 2 and slice4.count("_") > 1:
-                    score += 25
-                elif col == 3:
-                    score += 5
-                elif slice4.count(player.piece) == 1 and slice4.count("_") == 3:
-                    score += 10  
-                if slice4.count(op_piece) == 3 and slice4.count(player.piece) == 1:
-                    score += 1900
+                score += self.scoring_logic(player, slice4, col, op_piece)
 
-            
-        #        for i in range(3,6):
-        #    for j in range(0,4):
-        #        if self.board[i][j] == player.piece and self.board[i-1][j+1] == player.piece and self.board[i-2][j+2] == player.piece and self.board[i-3][j+3] == player.piece:
-            # for j in range(3):
-                # if self.board[j][i] == player.piece and self.board[j + 1][i] == player.piece and self.board[j + 2][i] == player.piece and self.board[j + 3][i] == player.piece:  
-                    
+        # backwards diagonals scoring
+            for i in range(3, 6):
+                diagback_array = []
+            for p in range(i + 1):
+                t = temp_board[(i - p)][6 - p]
+                diagback_array.append(t)
+            for j in range(len(diagback_array)-3):
+                slice4 = diagback_array[j:j+4]   
+                score += self.scoring_logic(player, slice4, col, op_piece)
+
         return score
-                # if self.board[i][j] == player.piece and self.board[i][j+1] == player.piece and self.board[i][j+2] == player.piece and self.board[i][j+3] == player.piece:
+             
 
+    def scoring_logic(self, player, slice4, col, op_piece):
+        """ 
+        scores each slice of 4 
+        returns the update for the score variable for the current column
+        """
+        score = 0 
+        if slice4.count(player.piece) == 4:
+            score+= 2000
+        elif slice4.count(player.piece) == 3 and slice4.count("_") == 1:
+            score += 1200
+        elif slice4.count(player.piece) == 2 and slice4.count("_") > 1:
+            score += 800
+        elif slice4.count(player.piece) == 1 and slice4.count("_") == 3:
+            score += 10  
+        elif col == 3:
+            score += 5
+            
+        # blocking moves
+        if slice4.count(op_piece) == 3 and slice4.count(player.piece) == 1:
+            score += 2000
+        if slice4.count(op_piece) == 3 and slice4.count("_") == 1:
+            score += 2000
+        if slice4 == ["_", op_piece, op_piece, "_"]:
+            score += 250
 
+        return score
