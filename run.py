@@ -1,4 +1,11 @@
+""" 
+Controls game flow and creates instances of the Board (1) and Player (2) Classes
 
+Functions:
+play_game
+
+Returns: None.
+"""
 import random
 from classes.player import Player
 from classes.board import Board
@@ -6,7 +13,18 @@ from classes.board import Board
 
 def play_game():
     """ 
-    controls program flow
+    Controls program flow and creates instances of the Board (1) and Player (2) Classes
+
+    Variables:
+    game: Object - instance of the Board Class
+    player1: Object - instance of the Player Class
+    player2: Object - instance of the Player Class
+    level: int - the difficulty level the player has choosen
+    choice: int - the column number the current player has choosen to drop piece in
+    piece_type: str - the current players piece type
+
+
+    Returns: None.
     """
 
     game = Board()

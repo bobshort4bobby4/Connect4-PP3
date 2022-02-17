@@ -1,9 +1,21 @@
-import os
+"""
+Module containing mixin Class used to clear terminal screen
 
+Classes: ClearMixin
+"""
+
+
+import os
 
 class ClearMixin():
     """
-    A function to clear the screen  copy/paste from codecap.org
+    A mixin function to clear the screen  copy/paste from codecap.org
+
+    Parameters: None
+
+    Variables: None
+    
+    Returns: None.
     """
     @staticmethod   
     def clrscr():  # Check if Operating System is Mac and Linux or Windows 

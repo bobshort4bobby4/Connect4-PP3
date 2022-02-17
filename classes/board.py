@@ -1,17 +1,54 @@
+"""
+Module containing the class to create, track  and manipulate the game state
+
+Classes: Board
+"""
 import sys
 import pyfiglet
 #path_to_module = "classes/"
 #sys.path.append(path_to_module)
-from classes import error
+from classes import CustomError
 from classes.ClearMixin import ClearMixin
 
 
 class Board(ClearMixin):
     """
-    build the board the game is played on
+    Builds the board the game is played on
     and methods to play game
+
+    Parameters:
+    ClearMixin: Class - clears the terminal screen
+
+    Methods:
+    def build(): creates the 2d array to represent the playing board
+
+    def draw_board(): draws the current state of the play-board to the terminal screen
+
+    def display_intro(): displays the introduction screen and returns  user choice of difficulty
+
+    def whose_turn(): determines which player should take next turn
+
+    def take_move(): Determines/accepts th players move and returns it
+
+    def insert_piece(): places the appropriate piece in the correct position in the board array
+
+    def check_draw(): checks the current play-board for a drawn state
+
+    def check_win(): checks if the current player has won the game and if so displays a message.
+
+    def play_again(): determines if the player wishes to play again, if not, exits the game
     """
     def __init__(self):
+        """
+        Constructs the attributes for the Board object.
+
+        Attributes:
+        board: array - the 2d array used to represent the game-board
+
+        number_turns: int - used to determine which player plays next
+
+        game_over: boolean - used to signal the end of a game cycle
+        """
         self.board = self.build()
         self.number_turns = 2
         self.game_Over = False
@@ -20,6 +57,14 @@ class Board(ClearMixin):
     def build(self):
         """ 
         creates the 2d array to represent the board
+
+        variables:
+        board_width: int - the width of the playing board measured in playing pieces
+
+        board_height: int - the height of the playing board measured in playing pieces
+
+        Returns:
+        board: array - the playing board.
         """
 
         board_width = 7
@@ -36,7 +81,12 @@ class Board(ClearMixin):
 
     def draw_board(self):
         """ 
-        draws the current state of game to screen
+        draws the current state of game to screen using the arrat board
+
+        Variables:
+        board: array - the playing board
+
+        Returns: none.
         """
 
         self.clrscr()
@@ -52,13 +102,18 @@ class Board(ClearMixin):
 
     def display_intro(self):
         """
-        displays intro screen and takes difficulty level from user
-        returns level
+        Displays intro screen and takes difficulty level from user
+
+        Variables:
+        ans:int - stores the input from user to set the difficulty level
+
+        level: str - stores the difficulty level
+
+        Returns:
+        level
         """
 
         self.clrscr()
-        player1 = {}
-        player2 = {}
         print('\033[93m') # change colour
         title = pyfiglet.figlet_format( "                    Connect 4")
         print(title)
@@ -91,9 +146,9 @@ class Board(ClearMixin):
                     raise TypeError("Only integers are allowed")
 
             except TypeError:
-                print("Please the digit 1 or the digit 2 ")
+                print("Please enter the digit 1 or the digit 2 ")
             except ValueError:
-                print("Please the digit 1 or the digit 2 ")
+                print("Please enter the digit 1 or the digit 2 ")
             
 
 
@@ -109,8 +164,19 @@ class Board(ClearMixin):
        
     def whose_turn(self, player1, player2):
         """
-         determines whose turn it is and returns the answer
-         """
+         Determines whose turn it is and returns the answer
+
+         Parameters:
+         player1: instance of Class Player
+
+         player2: instance of Class Player
+
+         Variables:
+         player: object representing either player1 or player2
+
+         Returns:
+         player: object
+        """
 
         if self.number_turns % 2 == 0:
             player = player1
@@ -123,8 +189,25 @@ class Board(ClearMixin):
 
     def take_move(self, player, level, player1, player2 ):
         """
-         determines what column the player wants to play and returns it
-         """
+        determines what column the current player wants to play and returns it
+
+        Parameters:
+        player: object - reprsenting the current player
+
+        level: str - the difficulty level for the current game
+
+        player1: instance of Player Class - player1
+        
+        player2: instance of Player class - player2
+
+        Variables:
+        col: int - the column the player picks to play
+
+        Returns:
+        col: int - the column the player picks to play
+
+        player.piece: object attribute - the current players piece type.
+        """
 
         col = 11
         # code for computer player
@@ -148,12 +231,12 @@ class Board(ClearMixin):
                     raise IndexError("  between 0 and 6") # checks if input number is within valid range
                 if self.board[0][col] != "_":  # checks if the column is full
                     col = 11
-                    raise ColumnFullError
+                    raise CustomError.ColumnFullError
 
             except ValueError:
                     print("  Enter a NUMBER in range 0-6")
            
-            except ColumnFullError:
+            except CustomError.ColumnFullError:
                     print("  Column full")
                     
             except IndexError:
@@ -165,7 +248,15 @@ class Board(ClearMixin):
 
     def insert_piece(self, choice, player_piece):
         """
-         inserts the piece into the aboard array
+         Inserts the piece into the board array
+
+         Parameters:
+         choice: int - the column the playing piece is to dropped in
+
+         player_piece: str - the type of playing piece to be used
+
+         Returns: None.
+
         """
 
         for row in range(5, -1, -1):
@@ -177,20 +268,42 @@ class Board(ClearMixin):
 
     def check_draw(self, board):
         """ 
-        checks to see if the game is drawn and returns a boolean
+        Checks to see if the game is drawn, displays a messsage and toggles the game.game_over attribute if so
+
+        Paramaters:
+        board: object attribute - the playing board
+
+        Variables:
+        strboard: str - the game board represented as a string, used to count number of empty positions left
+
+        temp: int - the number of empty spaces in the current board
+
+        Returns: None.
         """
         strboard = str(board)
         temp = strboard.count("_")
         if temp > 0:      # if any empty positions remaining return false else return true
             self.game_Over = False
         else:
-            print("  The game is a DRAW! Human hang your head in SHAME.")
+            print("  The game is a DRAW!.")
             self.game_Over = True
 
 
     def check_win(self, board, player):
         """
-        checks if game is won and returns a boolean
+        Checks if game is won by sectioning each block of 4 position and checking
+        for four of the same type piece in all positions,
+        toggles game.game_over attribute if game won
+
+        Parameters:
+        board: object attribute - the current state of the playing board
+
+        player: object - representing the current player
+
+        Variables:
+        player.piece: object attribure - the current players type of playing piece
+
+        Returns: None.
         """
        
         # break rows into blocks of four, check if all are the player's piece and if so colour them red and return true                    
@@ -250,8 +363,21 @@ class Board(ClearMixin):
 
     def play_again(self):
         """ 
-        asks for user input if they want to play again
-        returns true if user wants to play again
+        Asks the user  if they want to play again
+        returns true if user wants to play again, exit the program if not
+
+        Parameters: None
+
+        Variables:
+        ans: str - used to store the user input regarding play or exit
+
+        lowerans: str - the ans variable in lower case
+
+        valid_input: boolean - used to control input/validation process
+
+        bye: str - used to store farewell message
+
+        Returns: boolean (true) - if user wishes to play again, exits the program if not
          """
 
         # print("  Enter 'Quit' to finish or 'again' to play again")
@@ -263,7 +389,7 @@ class Board(ClearMixin):
             if lowerans == "quit": # if user wants to quit print messsage and exit
                 valid_input = True
                 print('\033[31m')
-                bye = pyfiglet.figlet_format("                BYE BYE  ")
+                bye = pyfiglet.figlet_format("                  BYE BYE  ")
                 print(bye)
                 print('\033[39m')
                 print("                  THANKS FOR PLAYING C4 IT'S BEEN A BLAST!")
