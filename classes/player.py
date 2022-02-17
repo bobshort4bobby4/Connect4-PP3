@@ -1,12 +1,9 @@
 import random
-import sys
 import copy
 import time
-path_to_module = "classes/"
-sys.path.append(path_to_module)
-from ClearMixin import *
+from classes.ClearMixin import *
 
-class PLAYER(ClearMixin):
+class Player(ClearMixin):
     """
     the players of the game
     """
@@ -28,13 +25,13 @@ class PLAYER(ClearMixin):
         level = game.display_intro()
         first = random.randint(1, 2) # decides play order, creates players
         if first == 1:
-            player1 = PLAYER("Human", "x")
-            player2 = PLAYER("Computer", "0")
+            player1 = Player("Human", "x")
+            player2 = Player("Computer", "0")
             print( "\033[5;31m" + "Human to go first" + '\033[39m')
             time.sleep(pause)
         else:
-            player1 = PLAYER("Computer", "x")
-            player2 = PLAYER("Human", "0")
+            player1 = Player("Computer", "x")
+            player2 = Player("Human", "0")
             print( "\033[5;31m" + "\033[5m" + " Computer to go first" + '\033[39m' )
             time.sleep(pause)
         
@@ -62,19 +59,22 @@ class PLAYER(ClearMixin):
         Generates computer moves based on a simple position scoring system
         returns column choice
         """
+        # get opposing piece to implement blocking move scoring
         final_scores = []
-        if player.piece == player1.piece: # get opposing piece to implement blocking move scoring 
+        if player.piece == player1.piece:  
             op_piece = player2.piece
         else:
             op_piece = player1.piece
 
-        valid_cols = []   # get valid columns to score
+        # get valid columns to score
+        valid_cols = []   
         for col in range(7):
             if board[0][col] == "_":
                 valid_cols.append(col)
             else:valid_cols.append(-1)
 
-        first_available_row = []  # get lowest row position for each  valid column to score
+        # get lowest row position for each  valid column to score
+        first_available_row = []  
         for col in valid_cols:
             if int(col) != -1:
                 for row in range(5,-1,-1):
@@ -84,11 +84,19 @@ class PLAYER(ClearMixin):
             else:
                 first_available_row.append(0)
                 
-        for index in range(len(valid_cols)): # make  copy of the board, drops a piece in each playable position 
-            if valid_cols[index] != -1:      # and sends it to be scored
+        # make  copy of the board, drops a piece in each playable position
+        # and sends it to be scored
+        for index in range(len(valid_cols)):  
+            if valid_cols[index] != -1:      
                 temp_board = copy.deepcopy(board)
-                temp_board[first_available_row[index]][valid_cols[index]] = player.piece
-                final_scores.append( player.scoring_function(temp_board,player,index, op_piece)) # stores the returned scores with a -1 value in full columns
+                #i = 0  use to fill the board with consequetive integers for testing
+                #for r in range(0,6):
+                    #for c in range(0,7):
+                        #temp_board[r][c] = i
+                        #i += 1
+                temp_board[first_available_row[index]][valid_cols[index]] = "*"
+                # stores the returned scores with a -1 value in full columns
+                final_scores.append( player.scoring_function(temp_board,player,index, op_piece)) 
             else:
                 final_scores.append(-1)
 
@@ -107,6 +115,7 @@ class PLAYER(ClearMixin):
             row_array = list(temp_board[i])
             for j in range(4):
                 slice4 = row_array[j:j+4]
+            
                 score += self.scoring_logic(player, slice4, col, op_piece)
 
         # check column for line of 4
@@ -117,26 +126,42 @@ class PLAYER(ClearMixin):
                 column_array.append(t)
             for j in range(3):
                 slice4 = column_array[j:j+4]
+                
+
                 score += self.scoring_logic(player, slice4, col, op_piece)
 
         # forwards diagonals scoring
-            for i in range(3,6):
-                diagfor_array = []
+
+        # left half of board
+        for i in range(3,6):
+            diagfor_array = []
             for p in range(i + 1):
                 t = temp_board[i-p][p]
                 diagfor_array.append(t)
             for j in range(len(diagfor_array)-3):
                 slice4 = diagfor_array[j:j+4]
+                
                 score += self.scoring_logic(player, slice4, col, op_piece)
 
+        # right half of board
+        #for r in range(0, 3):
+            #diagfor_array = []
+            #row = 6
+            #for c in range(count + 1, 6):
+                #t= temp_board[row-1][c]
+                #diagfor_array.append(t)
+
+
+
         # backwards diagonals scoring
-            for i in range(3, 6):
-                diagback_array = []
+        for i in range(3, 6):
+            diagback_array = []
             for p in range(i + 1):
                 t = temp_board[(i - p)][6 - p]
                 diagback_array.append(t)
             for j in range(len(diagback_array)-3):
                 slice4 = diagback_array[j:j+4]   
+                
                 score += self.scoring_logic(player, slice4, col, op_piece)
 
         return score
@@ -149,22 +174,24 @@ class PLAYER(ClearMixin):
         """
         score = 0 
         if slice4.count(player.piece) == 4:
-            score+= 2000
-        elif slice4.count(player.piece) == 3 and slice4.count("_") == 1:
-            score += 1200
-        elif slice4.count(player.piece) == 2 and slice4.count("_") > 1:
-            score += 800
-        elif slice4.count(player.piece) == 1 and slice4.count("_") == 3:
-            score += 10  
-        elif col == 3:
-            score += 5
-            
-        # blocking moves
-        if slice4.count(op_piece) == 3 and slice4.count(player.piece) == 1:
+            score+= 10000
+        elif slice4.count(player.piece) == 3 and slice4.count("*") == 1:
             score += 2000
+        elif slice4.count(player.piece) == 2 and slice4.count("*") == 1:
+            score += 1000
+        elif slice4.count(player.piece) == 1 and slice4.count("_") == 3:
+            score += 100  
+        elif col == 3:
+            score += 50
+
+        # blocking moves
+        if slice4.count(op_piece) == 3 and slice4.count("*") == 1:
+            score += 10000
         if slice4.count(op_piece) == 3 and slice4.count("_") == 1:
             score += 2000
-        if slice4 == ["_", op_piece, op_piece, "_"]:
-            score += 250
+        if slice4.count(op_piece) == 2: # and slice4.count("_") >= 1:
+            score += 1500
+        if slice4 == ["*", op_piece, op_piece, "_"] or slice4 == ["-", op_piece, op_piece, "*"]:
+            score += 5000
 
         return score
