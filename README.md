@@ -6,7 +6,7 @@ The deployed site can be found [here](https://minipproject.herokuapp.com/)
 Github repository can be accessed [here](https://github.com/bobshort4bobby4/Connect4-PP3)   
   
     
-![a mockup of the deployed application]()
+![a mockup of the deployed application](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/mockup-pp3.png)
   
     
       
@@ -38,6 +38,7 @@ More information regarding the game can be found [here](https://en.wikipedia.org
 <details>  
             
 <summary>User Experience/User Interface (UX/UI)</summary>  
+  
   ### User Stories
   
   ##### First Time Visitor Goals
@@ -92,31 +93,6 @@ More information regarding the game can be found [here](https://en.wikipedia.org
 
 
 mockup website  https://techsini.com/
-
-computer_move_scored()
-
-get array of valid columns
-get array of first available row positions ifor each valid column
-for each valid column drop apiece into first row position using tempboard
-            send this temp board to be scored for each position returning a score for that column to be stored in an scored array
-            take highest score from scored array and return as best column for computer to drop piece
-
-
-
-How to score ???
-re- use winning position code
-
-set score to zero
-use .count  method to count x and o in each batch of 4 add to score or not for each batch
-when all position scored return score to be stored in scored array
-
-get index of highest dore in scored array and use for column choice
-
-
-forwards diagonal scoring is imperfect, it does not score diagonals starting at 51 53 or 54 another loop would need to be made for these.
-it is a medium level of difficulty so may not implement . same issue will be on backwards diagonals if i use similiar loops.
-
-
 
 
 
