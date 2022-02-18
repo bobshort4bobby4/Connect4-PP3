@@ -39,9 +39,12 @@ class Player(ClearMixin):
         name: str - the name of that player
 
         piece: str - the playing piece of that player
+
+        player_moves: int - stores how many moves the player has made in the game
         """
         self.name = name
         self.piece = piece
+        self.player_moves = 0
     
     @staticmethod
     def init_game(game):

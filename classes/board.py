@@ -52,7 +52,7 @@ class Board(ClearMixin):
         self.board = self.build()
         self.number_turns = 2
         self.game_Over = False
-        
+        self
         
     def build(self):
         """ 
@@ -190,6 +190,7 @@ class Board(ClearMixin):
     def take_move(self, player, level, player1, player2 ):
         """
         determines what column the current player wants to play and returns it
+        updates the player_moves variable
 
         Parameters:
         player: object - reprsenting the current player
@@ -208,7 +209,7 @@ class Board(ClearMixin):
 
         player.piece: object attribute - the current players piece type.
         """
-
+        player.player_moves += 1
         col = 11
         # code for computer player
         if player.name == "Computer": 
@@ -266,12 +267,14 @@ class Board(ClearMixin):
         return
 
 
-    def check_draw(self, board):
+    def check_draw(self, board, player):
         """ 
         Checks to see if the game is drawn, displays a messsage and toggles the game.game_over attribute if so
 
         Paramaters:
         board: object attribute - the playing board
+
+        player: object - representing the current player
 
         Variables:
         strboard: str - the game board represented as a string, used to count number of empty positions left
@@ -286,6 +289,7 @@ class Board(ClearMixin):
             self.game_Over = False
         else:
             print("  The game is a DRAW!.")
+            print(f"  You have taken {player.player_moves} moves in this game")
             self.game_Over = True
 
 
@@ -318,7 +322,8 @@ class Board(ClearMixin):
                     self.board[i][j+2] = '\033[31m' + player.piece + '\033[39m'
                     self.board[i][j+3] = '\033[31m' + player.piece + '\033[39m'
                     self.draw_board()
-                    print('\033[0;32m' + f"  {player.piece} has won!  Congratulations {player.name}" + '\033[39m' )
+                    print('\033[0;32m' + f"  {player.piece} has won!  Congratulations {player.name}" )
+                    print(f"  {player.name}! You have taken {player.player_moves} moves in this game"  + '\033[39m')
                     self.game_Over = True
     
         # break columns into blocks of four, check if all are the player's piece and if so colour them red and return true
@@ -330,7 +335,8 @@ class Board(ClearMixin):
                     self.board[j+2][i] = '\033[31m' + player.piece + '\033[39m'
                     self.board[j+3][i] = '\033[31m' + player.piece + '\033[39m'
                     self.draw_board()
-                    print('\033[0;32m' + f"  {player.piece} has won!  Congratulations {player.name}" + '\033[39m' )
+                    print('\033[0;32m' + f"  {player.piece} has won!  Congratulations {player.name}"  )
+                    print(f"  {player.name}! You have taken {player.player_moves} moves in this game"  + '\033[39m')
                     self.game_Over = True
 
         # break forward diagonals into blocks of four, 
@@ -344,7 +350,8 @@ class Board(ClearMixin):
                     self.board[i-2][j+2] = '\033[31m' + player.piece + '\033[39m'
                     self.board[i-3][j+3] = '\033[31m' + player.piece + '\033[39m'
                     self.draw_board()
-                    print('\033[0;32m' + f"  {player.piece} has won!  Congratulations {player.name}" + '\033[39m' )
+                    print('\033[0;32m' + f"  {player.piece} has won!  Congratulations {player.name}" )
+                    print(f"  {player.name}! You have taken {player.player_moves} moves in this game"  + '\033[39m')
                     self.game_Over = True
 
         # break backwards diagonals into blocks of four, check if all are  the player's piece and if so colour them red and return true
@@ -357,7 +364,8 @@ class Board(ClearMixin):
                     self.board[i-2][j-2] = '\033[31m' + player.piece + '\033[39m'
                     self.board[i-3][j-3] = '\033[31m' + player.piece + '\033[39m'
                     self.draw_board()
-                    print('\033[0;32m' + f"  {player.piece} has won!  Congratulations {player.name}" + '\033[39m' )
+                    print('\033[0;32m' + f"  {player.piece} has won!  Congratulations {player.name}")
+                    print(f"  {player.name}! You have taken {player.player_moves} moves in this game"  + '\033[39m')
                     self.game_Over = True
 
 

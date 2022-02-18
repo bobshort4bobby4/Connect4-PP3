@@ -17,10 +17,15 @@ def play_game():
 
     Variables:
     game: Object - instance of the Board Class
+
     player1: Object - instance of the Player Class
+
     player2: Object - instance of the Player Class
+
     level: int - the difficulty level the player has choosen
+
     choice: int - the column number the current player has choosen to drop piece in
+    
     piece_type: str - the current players piece type
 
 
@@ -35,7 +40,7 @@ def play_game():
         choice, piece_type = game.take_move(player, level, player1, player2)
         game.insert_piece(choice, piece_type)
         game.draw_board()
-        game.check_draw(game.board)
+        game.check_draw(game.board, player)
         game.check_win(game.board, player)
         
     if game.play_again():
