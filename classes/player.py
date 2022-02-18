@@ -82,7 +82,7 @@ class Player(ClearMixin):
         if first == 1:
             player1 = Player("Human", "x")
             player2 = Player("Computer", "0")
-            print( "\033[5;31m" + "Human to go first" + '\033[39m')
+            print( "\033[5;31m" + "  Human to go first" + '\033[39m')
             time.sleep(pause)
         else:
             player1 = Player("Computer", "x")
@@ -123,7 +123,7 @@ class Player(ClearMixin):
     def computer_move_scored(self, player, board, player1, player2, level):
         """ 
         Generates computer moves based on a simple position scoring system,
-        used on the medium difficulty level
+        used on the medium  and hard difficulty levels
 
         Parameters:
         player: object - representing the current player
@@ -133,6 +133,8 @@ class Player(ClearMixin):
         player1: an instance of the Player Class
 
         player2: an instance of the Player Class
+
+        level: str - stores the difficulty level of the current game
 
         Variables:
         final_score: array - stores the list of scores for each column
@@ -152,8 +154,6 @@ class Player(ClearMixin):
 
         Returns:
         col: int - stores the choice of column picked to play.                           
-
-        returns column choice
         """
 
         # get opposing piece to implement blocking move scoring
@@ -179,21 +179,22 @@ class Player(ClearMixin):
                         first_available_row.append(row)
                         break
             else:
+                # append 0 to keep array correct length
                 first_available_row.append(0)
                 
-        # make  copy of the board, drops a piece in each playable position
+        # make copy of the board, drops a piece in each playable position
         # and sends it to be scored
-        for index in range(len(valid_cols)):  
-            if valid_cols[index] != -1:      
+        for indx in range(len(valid_cols)):  
+            if valid_cols[indx] != -1:      
                 temp_board = copy.deepcopy(board)
                 #i = 0  # use to fill the board with consequetive integers for testing
                 #for r in range(0,6):
                     #for c in range(0,7):
                         #temp_board[r][c] = i
                         #i += 1
-                temp_board[first_available_row[index]][valid_cols[index]] = "*"
+                temp_board[first_available_row[indx]][valid_cols[indx]] = "*"
                 # stores the returned scores with a -1 value in full columns
-                final_scores.append( player.scoring_function(temp_board,player,index, op_piece, level)) 
+                final_scores.append( player.scoring_function(temp_board, player, indx, op_piece, level)) 
             else:
                 final_scores.append(-1)
 
@@ -216,6 +217,8 @@ class Player(ClearMixin):
 
         op_piece: str - the human players playing piece type
 
+        level: str - stores the difficulty level of the current game
+
         Variables:
         score: int - stores the column being scored score
 
@@ -226,6 +229,8 @@ class Player(ClearMixin):
         diagfor_array: array - stores a row of forward leaning positions
 
         diagback_array: array - stores a row of backward leaning positions
+
+        slice4: array - stores the slice of 4 positions to be scored
 
         Returns:
         score: int - the column's score.
@@ -278,7 +283,7 @@ class Player(ClearMixin):
         # backwards diagonals scoring
 
         # right-hand side of board backwards diagonal
-        
+
         for i in range(3, 6):
             diagback_array = []
             for p in range(i + 1):
@@ -326,7 +331,7 @@ class Player(ClearMixin):
         
         """
         score = 0 
-        if slice4.count(player.piece) == 4: # this is redundant now remove check!
+        if slice4.count(player.piece) == 4: # this is redundant now? remove check!
             score+= 10000
         elif slice4.count(player.piece) == 3 and slice4.count("*") == 1:
             score += 2000

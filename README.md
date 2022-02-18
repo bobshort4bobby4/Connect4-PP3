@@ -60,7 +60,9 @@ More information regarding the game can be found [here](https://en.wikipedia.org
   - to provide a fun game so I feel I have produced a quality website.
   - to provide a game to stimulate mental function so that I provide a worthwhile experience for the user.
   - to encourage continued use of the game so that the site is a success.
-
+  
+  
+![flowchart](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/Flow-pp3.pdf)
 </details>
        
       

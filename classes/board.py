@@ -38,6 +38,8 @@ class Board(ClearMixin):
 
     def play_again(): determines if the player wishes to play again, if not, exits the game
     """
+
+
     def __init__(self):
         """
         Constructs the attributes for the Board object.
@@ -52,13 +54,13 @@ class Board(ClearMixin):
         self.board = self.build()
         self.number_turns = 2
         self.game_Over = False
-        self
+        
         
     def build(self):
         """ 
-        creates the 2d array to represent the board
+        Creates the 2d array to represent the board
 
-        variables:
+        Variables:
         board_width: int - the width of the playing board measured in playing pieces
 
         board_height: int - the height of the playing board measured in playing pieces
@@ -81,7 +83,7 @@ class Board(ClearMixin):
 
     def draw_board(self):
         """ 
-        draws the current state of game to screen using the arrat board
+        Draws the current state of game to screen using the current board
 
         Variables:
         board: array - the playing board
@@ -108,6 +110,13 @@ class Board(ClearMixin):
         ans:int - stores the input from user to set the difficulty level
 
         level: str - stores the difficulty level
+        question2: str - used to store string formatted using the Pyfiglet library
+
+        question3: str - used to store string formatted using the Pyfiglet library
+
+        question4: str - used to store string formatted using the Pyfiglet library
+
+        cond: boolean - used to control input loop
 
         Returns:
         level
@@ -178,7 +187,7 @@ class Board(ClearMixin):
          player: object representing either player1 or player2
 
          Returns:
-         player: object
+         player: object representing either player1 or player2
         """
 
         if self.number_turns % 2 == 0:
@@ -192,7 +201,7 @@ class Board(ClearMixin):
 
     def take_move(self, player, level, player1, player2 ):
         """
-        determines what column the current player wants to play and returns it
+        Determines which column the current player wants to play and returns it,
         updates the player_moves variable
 
         Parameters:
@@ -224,9 +233,10 @@ class Board(ClearMixin):
                 # calls medium level logic
                 col = player.computer_move_scored(player, self.board, player1, player2, level) 
                 return col, player.piece
-
+        # set col to invalid value to ensure while loop is run at least once
         col = 11
-        while(col < 0) or(col > 6):  # takes in players choice of column and validate it
+        # takes in players choice of column and validates it
+        while(col < 0) or(col > 6):  
             try:
                 print("")
                 col = int(input(f"  {player.name} pick a column to drop an {player.piece} "))
@@ -288,7 +298,7 @@ class Board(ClearMixin):
         """
         strboard = str(board)
         temp = strboard.count("_")
-        if temp > 0:      # if any empty positions remaining return false else return true
+        if temp > 0:      # if any empty positions remaining set game.game_over to false else set to true
             self.game_Over = False
         else:
             print("  The game is a DRAW!.")
@@ -313,7 +323,8 @@ class Board(ClearMixin):
         Returns: None.
         """
        
-        # break rows into blocks of four, check if all are the player's piece and if so colour them red and return true                    
+        # break rows into blocks of four, check if all are the player's piece
+        #  and if so colour them red and set game_over to true                  
         for i in range(6): 
             for j in range(4):
                 if (self.board[i][j] == player.piece and
@@ -329,7 +340,8 @@ class Board(ClearMixin):
                     print(f"  {player.name}! You have taken {player.player_moves} moves in this game"  + '\033[39m')
                     self.game_Over = True
     
-        # break columns into blocks of four, check if all are the player's piece and if so colour them red and return true
+        # break columns into blocks of four, check if all are the player's piece
+        #  and if so colour them red and set game_over to true
         for i in range(7):
             for j in range(3):
                 if self.board[j][i] == player.piece and self.board[j + 1][i] == player.piece and self.board[j + 2][i] == player.piece and self.board[j + 3][i] == player.piece:
@@ -344,7 +356,7 @@ class Board(ClearMixin):
 
         # break forward diagonals into blocks of four, 
         # check if all are the player's piece and if so 
-        # colour them red and return true
+        # colour them red and set game.over to true
         for i in range(3,6):
             for j in range(0,4):
                 if self.board[i][j] == player.piece and self.board[i-1][j+1] == player.piece and self.board[i-2][j+2] == player.piece and self.board[i-3][j+3] == player.piece:
@@ -357,7 +369,8 @@ class Board(ClearMixin):
                     print(f"  {player.name}! You have taken {player.player_moves} moves in this game"  + '\033[39m')
                     self.game_Over = True
 
-        # break backwards diagonals into blocks of four, check if all are  the player's piece and if so colour them red and return true
+        # break backwards diagonals into blocks of four, check if all are
+        # the player's piece and if so colour them red and set game_over to true
 
         for i in range(3,6):
             for j in range(6,2,-1):
@@ -391,7 +404,6 @@ class Board(ClearMixin):
         Returns: boolean (true) - if user wishes to play again, exits the program if not
          """
 
-        # print("  Enter 'Quit' to finish or 'again' to play again")
         ans = ""
         valid_input = False
         while not valid_input: # accepts user input and validates it
@@ -400,10 +412,10 @@ class Board(ClearMixin):
             if lowerans == "quit": # if user wants to quit print messsage and exit
                 valid_input = True
                 print('\033[31m')
-                bye = pyfiglet.figlet_format("                  BYE BYE  ")
+                bye = pyfiglet.figlet_format("                    BYE BYE  ")
                 print(bye)
                 print('\033[39m')
-                print("                  THANKS FOR PLAYING C4 IT'S BEEN A BLAST!")
+                print("                    THANKS FOR PLAYING C4 IT'S BEEN A BLAST!")
                 exit()
             elif lowerans == "again":
                 valid_input = True # if user wants to play again return true 
