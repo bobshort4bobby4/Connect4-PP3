@@ -127,28 +127,29 @@ class Board(ClearMixin):
         input("  Press Enter To Continue...\n")
 
         self.clrscr()
-        question = pyfiglet.figlet_format("   Two difficulty levels are provided " )
+        
         question2 = pyfiglet.figlet_format(" 1. Easy ")
         question3 = pyfiglet.figlet_format(" 2. Medium")
-        print("TWO DIFFICULTY LEVELS ARE AVAILABLE ")
-        print(question2, question3)
+        question4 = pyfiglet.figlet_format(" 3. Hard")
+        print("THREE DIFFICULTY LEVELS ARE AVAILABLE ")
+        print(question2, question3, question4)
         cond = True  
 
 
         while cond: # takes in amd validates level from the user
             try:
-                ans = int(input("Enter 1 for Easy or 2 for Medium :\n"))
-                if type(int(ans)) is int and ans == 1 or ans == 2:
+                ans = int(input("Enter 1 for Easy, 2 for Medium or 3 for Hard :\n"))
+                if type(int(ans)) is int and ans == 1 or ans == 2 or ans == 3:
                     cond = False
-                if ans != 1 and ans != 2:
-                    raise ValueError("Please select either 1 or 2")
+                if ans != 1 and ans != 2 and ans != 3:
+                    raise ValueError("Please select either 1, 2 or 3.")
                 if not type(ans) is int:
                     raise TypeError("Only integers are allowed")
 
             except TypeError:
-                print("Please enter the digit 1 or the digit 2 ")
+                print("  Please enter the digit 1,the digit 2 or the digit 3. ")
             except ValueError:
-                print("Please enter the digit 1 or the digit 2 ")
+                print("  Please enter the digit 1, the digit 2 or the digit 3.")
             
 
 
@@ -156,8 +157,10 @@ class Board(ClearMixin):
       
         if int(ans) == 1: # sets difficulty level variable to correct value
             level = "easy"
-        else:
+        elif int(ans) == 2:
             level = "medium"
+        else:
+            level = "hard"
 
         return level
 
@@ -217,9 +220,9 @@ class Board(ClearMixin):
                 # calls easy level logic
                 col = player.computer_move_random(self.board)
                 return col, player.piece
-            elif level == "medium":
+            elif level == "medium" or level == "hard":
                 # calls medium level logic
-                col = player.computer_move_scored(player, self.board, player1, player2) 
+                col = player.computer_move_scored(player, self.board, player1, player2, level) 
                 return col, player.piece
 
         col = 11

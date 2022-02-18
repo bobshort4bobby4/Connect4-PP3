@@ -120,7 +120,7 @@ class Player(ClearMixin):
         return col
 
 
-    def computer_move_scored(self, player, board, player1, player2):
+    def computer_move_scored(self, player, board, player1, player2, level):
         """ 
         Generates computer moves based on a simple position scoring system,
         used on the medium difficulty level
@@ -193,7 +193,7 @@ class Player(ClearMixin):
                         #i += 1
                 temp_board[first_available_row[index]][valid_cols[index]] = "*"
                 # stores the returned scores with a -1 value in full columns
-                final_scores.append( player.scoring_function(temp_board,player,index, op_piece)) 
+                final_scores.append( player.scoring_function(temp_board,player,index, op_piece, level)) 
             else:
                 final_scores.append(-1)
 
@@ -202,7 +202,7 @@ class Player(ClearMixin):
 
 
 
-    def scoring_function(self, temp_board, player, col, op_piece):
+    def scoring_function(self, temp_board, player, col, op_piece, level):
         """ 
         Breaks the copy of the playing board into
         slices of 4 and sends them to be scored
@@ -252,7 +252,7 @@ class Player(ClearMixin):
 
         # forwards diagonals scoring
 
-        # left half of board
+        # left half of board forwards diagonal
         for i in range(3,6):
             diagfor_array = []
             for p in range(i + 1):
@@ -263,9 +263,22 @@ class Player(ClearMixin):
                 score += self.scoring_logic(player, slice4, col, op_piece)
 
      
-                
+        # right hand-side of board forwards diagonal
+        # only used on hard difficulty
+        if level == "hard":
+            for r in range(0,3):
+                diagfor_array = []
+                for c in range(6 - r):
+                    t = temp_board[r+c][6-c]
+                    diagfor_array.append(t)
+                for j in range(len(diagfor_array)-3):
+                    slice4 = diagfor_array[j:j+4]
+                    score += self.scoring_logic(player, slice4, col, op_piece)
                 
         # backwards diagonals scoring
+
+        # right-hand side of board backwards diagonal
+        
         for i in range(3, 6):
             diagback_array = []
             for p in range(i + 1):
@@ -273,8 +286,21 @@ class Player(ClearMixin):
                 diagback_array.append(t)
             for j in range(len(diagback_array)-3):
                 slice4 = diagback_array[j:j+4]   
-                
                 score += self.scoring_logic(player, slice4, col, op_piece)
+
+        # left-hand side of board backwards diagonal
+        # only used on hard difficulty level
+
+        if level == "hard":
+            for r in range(0,3):
+                diagback_array = []
+                for c in range(6 - r):
+                    t = temp_board[r + c][c]
+                    diagback_array.append(t)
+            for j in range(len(diagback_array)-3):
+                    slice4 = diagback_array[j:j+4]   
+                    score += self.scoring_logic(player, slice4, col, op_piece)
+
 
         return score
              
