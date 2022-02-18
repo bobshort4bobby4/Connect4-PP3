@@ -62,7 +62,9 @@ More information regarding the game can be found [here](https://en.wikipedia.org
   - to encourage continued use of the game so that the site is a success.
   
   
-![flowchart](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/Flow-pp3.pdf)
+[Link to Flowchart Pdf can be found here](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/Flow-pp3.pdf)   
+![screenshot of flowchart](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/Flow-pp3.png) 
+
 </details>
        
       
