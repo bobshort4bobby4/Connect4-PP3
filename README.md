@@ -61,10 +61,24 @@ More information regarding the game can be found [here](https://en.wikipedia.org
   - to provide a game to stimulate mental function so that I provide a worthwhile experience for the user.
   - to encourage continued use of the game so that the site is a success.
   
+  ### FlowCharts
   
-[Link to Flowchart Pdf can be found here](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/Flow-pp3.pdf)   
-![screenshot of flowchart](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/Flow-pp3.png) 
-
+  A Flowchart for the python script in shown below as well as a link to the pdf of same.  
+    
+  
+  [Link to Flowchart Pdf can be found here](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/Flow-pp3.pdf)    
+  
+  ![screenshot of flowchart](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/Flow-pp3.png) 
+  
+    
+  ### WireFrames
+  
+  The design is very basic and does not change, consequently I felt a one page Wireframe would be sufficent showing the basic lay-out of the site.
+    
+  A [link to the pdf file for the Wireframes is here.](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/wireframe-pp3.pdf)  
+   
+  
+  ![image of desttop and mobile wireframes](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/wireframe-pp3.png)
 </details>
        
       
