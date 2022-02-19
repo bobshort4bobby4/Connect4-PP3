@@ -79,13 +79,68 @@ More information regarding the game can be found [here](https://en.wikipedia.org
    
   
   ![image of desttop and mobile wireframes](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/wireframe-pp3.png)
+  
+  ### Background Image
+  
+  In order to add visual appeal I useda repeating tile as a background image.  It is a picture of a section of the gameboard.  
+  
+  [Link to background tile]()  
+    
+    
+  ![the background image tile]()
+  
+ 
 </details>
-       
-      
 
 
+# Deployment
+
+<details>
+  
+  <summary>Heroku</sumarry>  
+  
+### Heroku
+
+Heroku is a cloud based platform that allows the user to deploy and manage apps easily.  Heroku is fully managed meaning that all the hardware/server issues are taken care of.
+It allows the linking of github repositories which makes deploying easier.
+
+To deploy my project I followed the steps below.
+
+1. Goto the [Heroku home page](https://www.heroku.com/) and open an account.
+1. Goto your dashboard and click on the 'new ' button in the top right of the screen.  
+                             ![screenshot of new button]()  
+1. From the drop down list choose 'Create new App'.
+                             ![a screen shot of the create new app page in heroku]()  
+  
+  
+1. Choose a name for your project and the region you are in. Click 'Create App'
+1. Click on the 'Settings' tab.
+                             ![a screen shot of the settings tab]()  
+1. Click 'Reveal Config Vars.
+1. Enter `port` and `8000` as a key:value pair and press `Add`  
+1. Click 'add buildpack'
+  ![a screen shot of the buildpack screen]()
+1. Add the Python buildpack then the nodejs one. Click 'Save'
+                             ![a screen shot of the buildpack screen]()
+  
+1. Select the 'Deploy' tab.
+1. Choose the'Connect to GitHub' option from the 'Deployment Method' section.
+                             ![a screen shot of the github deployment section]()
+
+1. Search for and enter the 'repo-name' in the input area.
+  
+   ![a screen shot of the repo name input area]()  
+1. Click 'Connect'.
+1.  Choose either `Enable Automatic Deploys` or `Deploy Branch'.  I chose the former.
+1. The site should now be deployed.  Click the 'Overview' tab and the 'Latest activity' should ahve a 'build succeeded' message diplayed.
+  The deployment log can be also accessed on the github repository under the 'Environments' section to the right of the page.
+  
+[**The site is now live](https://minipproject.herokuapp.com/)
+  
+![a picture of the deployed site]()
 
 
+</details>
 
 
 
