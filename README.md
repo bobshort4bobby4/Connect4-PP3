@@ -87,7 +87,7 @@ More information regarding the game can be found [here](https://en.wikipedia.org
   [Link to background tile]()  
     
     
-  ![the background image tile]()
+  ![the background image tile](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/connect-tile-pp3.jpg)
   
  
 </details>
@@ -97,7 +97,7 @@ More information regarding the game can be found [here](https://en.wikipedia.org
 
 <details>
   
-  <summary>Heroku</sumarry>  
+  <summary>Heroku</summary>  
   
 ### Heroku
 
@@ -108,36 +108,36 @@ To deploy my project I followed the steps below.
 
 1. Goto the [Heroku home page](https://www.heroku.com/) and open an account.
 1. Goto your dashboard and click on the 'new ' button in the top right of the screen.  
-                             ![screenshot of new button]()  
+  ![screenshot of new button](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/heroku-newapp-pp3.png)  
 1. From the drop down list choose 'Create new App'.
-                             ![a screen shot of the create new app page in heroku]()  
+  ![a screen shot of the create new app page in heroku](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/createnewapp-heroku-pp3.png)  
   
   
 1. Choose a name for your project and the region you are in. Click 'Create App'
 1. Click on the 'Settings' tab.
-                             ![a screen shot of the settings tab]()  
+  ![a screen shot of the settings tab](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/settingheroku-ppp3.png)  
 1. Click 'Reveal Config Vars.
 1. Enter `port` and `8000` as a key:value pair and press `Add`  
 1. Click 'add buildpack'
-  ![a screen shot of the buildpack screen]()
-1. Add the Python buildpack then the nodejs one. Click 'Save'
-                             ![a screen shot of the buildpack screen]()
-  
+1. Add the Python buildpack then the nodejs one. Click 'Save'  
+  ![a screen shot of the buildpack screen](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/buildpack-pp3.png)
 1. Select the 'Deploy' tab.
 1. Choose the'Connect to GitHub' option from the 'Deployment Method' section.
-                             ![a screen shot of the github deployment section]()
+  ![a screen shot of the github deployment section](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/settingtab-herku-pp3.png)
 
 1. Search for and enter the 'repo-name' in the input area.
   
-   ![a screen shot of the repo name input area]()  
+  ![a screen shot of the repo name input area](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/reponame-pp3.png)  
 1. Click 'Connect'.
-1.  Choose either `Enable Automatic Deploys` or `Deploy Branch'.  I chose the former.
+1. Choose either `Enable Automatic Deploys` or `Deploy Branch'.  I chose the former.
 1. The site should now be deployed.  Click the 'Overview' tab and the 'Latest activity' should ahve a 'build succeeded' message diplayed.
-  The deployment log can be also accessed on the github repository under the 'Environments' section to the right of the page.
+   The deployment log can be also accessed on the github repository under the 'Environments' section to the right of the page.
+  
+![a screen shot of the buid succeeded](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/buildsucceeded-pp3.png)
   
 [**The site is now live](https://minipproject.herokuapp.com/)
   
-![a picture of the deployed site]()
+![a picture of the deployed site](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/deployedheroku-pp3.png)
 
 
 </details>
