@@ -1,12 +1,10 @@
 """
-Module containing the class to create, track  and manipulate the game state
+Module containing the class to create, track and manipulate the game state
 
 Classes: Board
 """
 import sys
 import pyfiglet
-#path_to_module = "classes/"
-#sys.path.append(path_to_module)
 from classes import CustomError
 from classes.ClearMixin import ClearMixin
 
@@ -22,23 +20,27 @@ class Board(ClearMixin):
     Methods:
     def build(): creates the 2d array to represent the playing board
 
-    def draw_board(): draws the current state of the play-board to the terminal screen
+    def draw_board(): draws the current state of the
+                                 play-board to the terminal screen
 
-    def display_intro(): displays the introduction screen and returns  user choice of difficulty
+    def display_intro(): displays the introduction screen and
+                                         returns  user choice of difficulty
 
     def whose_turn(): determines which player should take next turn
 
     def take_move(): Determines/accepts th players move and returns it
 
-    def insert_piece(): places the appropriate piece in the correct position in the board array
+    def insert_piece(): places the appropriate piece in the
+                                    correct position in the board array
 
     def check_draw(): checks the current play-board for a drawn state
 
-    def check_win(): checks if the current player has won the game and if so displays a message.
+    def check_win(): checks if the current player has won
+                                     the game and if so displays a message.
 
-    def play_again(): determines if the player wishes to play again, if not, exits the game
+    def play_again(): determines if the player wishes
+                         to play again, if not, exits the game
     """
-
 
     def __init__(self):
         """
@@ -54,16 +56,17 @@ class Board(ClearMixin):
         self.board = self.build()
         self.number_turns = 2
         self.game_Over = False
-        
-        
+
     def build(self):
-        """ 
+        """
         Creates the 2d array to represent the board
 
         Variables:
-        board_width: int - the width of the playing board measured in playing pieces
+        board_width: int - the width of the playing board
+                                             measured in playing pieces
 
-        board_height: int - the height of the playing board measured in playing pieces
+        board_height: int - the height of the playing board
+                                             measured in playing pieces
 
         Returns:
         board: array - the playing board.
@@ -71,18 +74,18 @@ class Board(ClearMixin):
 
         board_width = 7
         board_height = 6
-        self.board = [] # create empty array
+        # create empty array
+        self.board = []
         for i in range(board_width - 1):
             self.board.append([])
-
-        for i in range(board_height):  # fill board object
+        # fill board object
+        for i in range(board_height):
             for j in range(board_width):
                 self.board[i].insert(j, "_")
         return self.board
 
-
     def draw_board(self):
-        """ 
+        """
         Draws the current state of game to screen using the current board
 
         Variables:
@@ -93,14 +96,13 @@ class Board(ClearMixin):
 
         self.clrscr()
         print("")
-        print( "                                   0 1 2 3 4 5 6 ")
-        print( "                               __________________")
+        print("                                   0 1 2 3 4 5 6 ")
+        print("                               __________________")
         for i in range(6):
-                print("                              ",i, "~", end="|")
+                print("                              ", i, "~", end="|")
                 for j in range(7):
                         print(self.board[i][j], end="|")
                 print("")
-
 
     def display_intro(self):
         """
@@ -110,11 +112,14 @@ class Board(ClearMixin):
         ans:int - stores the input from user to set the difficulty level
 
         level: str - stores the difficulty level
-        question2: str - used to store string formatted using the Pyfiglet library
+        question2: str - used to store string formatted
+                                         using the Pyfiglet library
 
-        question3: str - used to store string formatted using the Pyfiglet library
+        question3: str - used to store string formatted
+                                         using the Pyfiglet library
 
-        question4: str - used to store string formatted using the Pyfiglet library
+        question4: str - used to store string formatted
+                                         using the Pyfiglet library
 
         cond: boolean - used to control input loop
 
@@ -123,31 +128,37 @@ class Board(ClearMixin):
         """
 
         self.clrscr()
-        print('\033[93m') # change colour
-        title = pyfiglet.figlet_format( "                    Connect 4")
+        # change colour
+        print('\033[93m')
+        title = pyfiglet.figlet_format("                    Connect 4")
         print(title)
-        print("  A version of the classic board game 'Connect4', first sold in 1974.")
-        print("  There are over 4.5 trillion combinations of tiles possible on the ")
+        print("  A version of the classic board game 'Connect4'," +
+              "first sold in 1974.")
+        print("  There are over 4.5 trillion combinations" +
+              "of tiles possible on the ")
         print("  standard 6 by 7 board.")
-        print("  The object of the game is to connect four of your colour tiles in a")
+        print("  The object of the game is to connect" +
+              "four of your colour tiles in a")
         print("  line, the  line can be in any direction.")
-        print("  If all the pieces are used before a line is found the game is a draw")
-        
+        print("  If all the pieces are used before a line is" +
+              "found the game is a draw")
+
         input("  Press Enter To Continue...\n")
 
         self.clrscr()
-        
+
         question2 = pyfiglet.figlet_format(" 1. Easy ")
         question3 = pyfiglet.figlet_format(" 2. Medium")
         question4 = pyfiglet.figlet_format(" 3. Hard")
         print("THREE DIFFICULTY LEVELS ARE AVAILABLE ")
         print(question2, question3, question4)
-        cond = True  
+        cond = True
 
-
-        while cond: # takes in amd validates level from the user
+        # takes in amd validates level from the user
+        while cond:
             try:
-                ans = int(input("Enter 1 for Easy, 2 for Medium or 3 for Hard :\n"))
+                ans = int(input("Enter 1 for Easy," +
+                                "2 for Medium or 3 for Hard :\n"))
                 if type(int(ans)) is int and ans == 1 or ans == 2 or ans == 3:
                     cond = False
                 if ans != 1 and ans != 2 and ans != 3:
@@ -156,15 +167,16 @@ class Board(ClearMixin):
                     raise TypeError("Only integers are allowed")
 
             except TypeError:
-                print("  Please enter the digit 1,the digit 2 or the digit 3. ")
+                print("  Please enter the digit 1," +
+                      "the digit 2 or the digit 3. ")
             except ValueError:
-                print("  Please enter the digit 1, the digit 2 or the digit 3.")
-            
+                print("  Please enter the digit 1," +
+                      "the digit 2 or the digit 3.")
 
-
-        print('\033[39m') # change back to default clour
-      
-        if int(ans) == 1: # sets difficulty level variable to correct value
+        # change back to default colour
+        print('\033[39m')
+        # sets difficulty level variable to correct value
+        if int(ans) == 1:
             level = "easy"
         elif int(ans) == 2:
             level = "medium"
@@ -173,7 +185,6 @@ class Board(ClearMixin):
 
         return level
 
-       
     def whose_turn(self, player1, player2):
         """
          Determines whose turn it is and returns the answer
@@ -198,10 +209,10 @@ class Board(ClearMixin):
             self.number_turns += 1
         return player
 
-
-    def take_move(self, player, level, player1, player2 ):
+    def take_move(self, player, level, player1, player2):
         """
-        Determines which column the current player wants to play and returns it,
+        Determines which column the current player
+        wants to play and returns it,
         updates the player_moves variable
 
         Parameters:
@@ -210,7 +221,7 @@ class Board(ClearMixin):
         level: str - the difficulty level for the current game
 
         player1: instance of Player Class - player1
-        
+
         player2: instance of Player class - player2
 
         Variables:
@@ -224,41 +235,43 @@ class Board(ClearMixin):
         player.player_moves += 1
         col = 11
         # code for computer player
-        if player.name == "Computer": 
+        if player.name == "Computer":
             if level == "easy":
                 # calls easy level logic
                 col = player.computer_move_random(self.board)
                 return col, player.piece
             elif level == "medium" or level == "hard":
                 # calls medium level logic
-                col = player.computer_move_scored(player, self.board, player1, player2, level) 
+                col = player.computer_move_scored(
+                    player, self.board, player1, player2, level)
                 return col, player.piece
         # set col to invalid value to ensure while loop is run at least once
         col = 11
         # takes in players choice of column and validates it
-        while(col < 0) or(col > 6):  
+        while(col < 0) or(col > 6):
             try:
                 print("")
-                col = int(input(f"  {player.name} pick a column to drop an {player.piece} "))
-                                
+                print(" ", player.name, "!")
+                col = int(input(f" Pick a column to drop an {player.piece} "))
+
                 if col < 0 or col > 6:
-                    raise IndexError("  between 0 and 6") # checks if input number is within valid range
-                if self.board[0][col] != "_":  # checks if the column is full
+                    # checks if input number is within valid range
+                    raise IndexError("  between 0 and 6")
+                # checks if the column is full
+                if self.board[0][col] != "_":
                     col = 11
                     raise CustomError.ColumnFullError
 
             except ValueError:
                     print("  Enter a NUMBER in range 0-6")
-           
+
             except CustomError.ColumnFullError:
                     print("  Column full")
-                    
+
             except IndexError:
                     print("  Enter a NUMBER in range 0-6")
-                 
+
         return col, player.piece
-
-
 
     def insert_piece(self, choice, player_piece):
         """
@@ -274,15 +287,16 @@ class Board(ClearMixin):
         """
 
         for row in range(5, -1, -1):
-            if self.board[row][choice] == "_": # drops the correct piece into the first empty row of the choosen column
+            # drops the correct piece into the first empty row of the column
+            if self.board[row][choice] == "_":
                 self.board[row][choice] = player_piece
                 break
         return
 
-
     def check_draw(self, board, player):
-        """ 
-        Checks to see if the game is drawn, displays a messsage and toggles the game.game_over attribute if so
+        """
+        Checks to see if the game is drawn, displays a messsage
+        and toggles the game.game_over attribute if so
 
         Paramaters:
         board: object attribute - the playing board
@@ -290,7 +304,8 @@ class Board(ClearMixin):
         player: object - representing the current player
 
         Variables:
-        strboard: str - the game board represented as a string, used to count number of empty positions left
+        strboard: str - the game board represented as a string,
+        used to count number of empty positions left
 
         temp: int - the number of empty spaces in the current board
 
@@ -298,18 +313,20 @@ class Board(ClearMixin):
         """
         strboard = str(board)
         temp = strboard.count("_")
-        if temp > 0:      # if any empty positions remaining set game.game_over to false else set to true
+        # if any empty positions remaining set
+        #  game.game_over to false else set to true
+        if temp > 0:
             self.game_Over = False
         else:
             print("  The game is a DRAW!.")
             print(f"  You have taken {player.player_moves} moves in this game")
             self.game_Over = True
 
-
     def check_win(self, board, player):
         """
-        Checks if game is won by sectioning each block of 4 position and checking
-        for four of the same type piece in all positions,
+        Checks if game is won by sectioning each block
+        of 4 position and checking for four of the same
+        type piece in all positions,
         toggles game.game_over attribute if game won
 
         Parameters:
@@ -318,75 +335,115 @@ class Board(ClearMixin):
         player: object - representing the current player
 
         Variables:
-        player.piece: object attribure - the current players type of playing piece
+        player.piece: object attribure - the current
+            players type of playing piece
 
         Returns: None.
         """
-       
+
         # break rows into blocks of four, check if all are the player's piece
-        #  and if so colour them red and set game_over to true                  
-        for i in range(6): 
+        #  and if so colour them red and set game_over to true
+        for i in range(6):
             for j in range(4):
                 if (self.board[i][j] == player.piece and
-                    self.board[i][j+1] == player.piece and
-                    self.board[i][j+2] == player.piece and
-                    self.board[i][j+3] == player.piece):
-                    self.board[i][j] = '\033[31m' + player.piece + '\033[39m'
-                    self.board[i][j+1] = '\033[31m' + player.piece + '\033[39m'
-                    self.board[i][j+2] = '\033[31m' + player.piece + '\033[39m'
-                    self.board[i][j+3] = '\033[31m' + player.piece + '\033[39m'
+                        self.board[i][j+1] == player.piece and
+                        self.board[i][j+2] == player.piece and
+                        self.board[i][j+3] == player.piece):
+                    self.board[i][j] = '\033[31m' + player.piece + \
+                        '\033[39m'
+                    self.board[i][j+1] = '\033[31m' + player.piece + \
+                        '\033[39m'
+                    self.board[i][j+2] = '\033[31m' + player.piece + \
+                        '\033[39m'
+                    self.board[i][j+3] = '\033[31m' + player.piece + \
+                        '\033[39m'
                     self.draw_board()
-                    print('\033[0;32m' + f"  {player.piece} has won!  Congratulations {player.name}" )
-                    print(f"  {player.name}! You have taken {player.player_moves} moves in this game"  + '\033[39m')
-                    self.game_Over = True
-    
-        # break columns into blocks of four, check if all are the player's piece
-        #  and if so colour them red and set game_over to true
-        for i in range(7):
-            for j in range(3):
-                if self.board[j][i] == player.piece and self.board[j + 1][i] == player.piece and self.board[j + 2][i] == player.piece and self.board[j + 3][i] == player.piece:
-                    self.board[j][i] = '\033[31m' + player.piece + '\033[39m'
-                    self.board[j+1][i] = '\033[31m' + player.piece + '\033[39m'
-                    self.board[j+2][i] = '\033[31m' + player.piece + '\033[39m'
-                    self.board[j+3][i] = '\033[31m' + player.piece + '\033[39m'
-                    self.draw_board()
-                    print('\033[0;32m' + f"  {player.piece} has won!  Congratulations {player.name}"  )
-                    print(f"  {player.name}! You have taken {player.player_moves} moves in this game"  + '\033[39m')
+                    print('\033[0;32m' + f"  {player.piece} has won! "
+                          f"Congratulations {player.name}")
+                    print(f"  {player.name}! "
+                          f"You have taken {player.player_moves} moves"
+                           " in this game" + '\033[39m')
                     self.game_Over = True
 
-        # break forward diagonals into blocks of four, 
-        # check if all are the player's piece and if so 
-        # colour them red and set game.over to true
-        for i in range(3,6):
-            for j in range(0,4):
-                if self.board[i][j] == player.piece and self.board[i-1][j+1] == player.piece and self.board[i-2][j+2] == player.piece and self.board[i-3][j+3] == player.piece:
-                    self.board[i][j] = '\033[31m' + player.piece + '\033[39m'
-                    self.board[i-1][j+1] = '\033[31m' + player.piece + '\033[39m'
-                    self.board[i-2][j+2] = '\033[31m' + player.piece + '\033[39m'
-                    self.board[i-3][j+3] = '\033[31m' + player.piece + '\033[39m'
+        # break columns into blocks of four,
+        # check if all are the player's piece
+        # and if so colour them red and set game_over to true
+        for i in range(7):
+            for j in range(3):
+                if (self.board[j][i] == player.piece and
+                        self.board[j + 1][i] == player.piece and
+                        self.board[j + 2][i] == player.piece and
+                        self.board[j + 3][i] == player.piece):
+                    self.board[j][i] = '\033[31m' + player.piece + \
+                        '\033[39m'
+                    self.board[j+1][i] = '\033[31m' + player.piece + \
+                        '\033[39m'
+                    self.board[j+2][i] = '\033[31m' + player.piece + \
+                        '\033[39m'
+                    self.board[j+3][i] = '\033[31m' + player.piece + \
+                        '\033[39m'
                     self.draw_board()
-                    print('\033[0;32m' + f"  {player.piece} has won!  Congratulations {player.name}" )
-                    print(f"  {player.name}! You have taken {player.player_moves} moves in this game"  + '\033[39m')
+                    print('\033[0;32m' + f"  {player.piece} has won! "
+                          f"Congratulations {player.name}")
+                    print(f"  {player.name}! "
+                          f"You have taken {player.player_moves} moves"
+                           " in this game" + '\033[39m')
+                    self.game_Over = True
+
+        # break forward diagonals into blocks of four,
+        # check if all are the player's piece and if so
+        # colour them red and set game.over to true
+        for i in range(3, 6):
+            for j in range(0, 4):
+                if (self.board[i][j] == player.piece and
+                        self.board[i-1][j+1] == player.piece and
+                        self.board[i-2][j+2] == player.piece and
+                        self.board[i-3][j+3] == player.piece):
+                    self.board[i][j] = '\033[31m' + player.piece + \
+                        '\033[39m'
+                    self.board[i-1][j+1] = '\033[31m' + player.piece + \
+                        '\033[39m'
+                    self.board[i-2][j+2] = '\033[31m' + player.piece + \
+                        '\033[39m'
+                    self.board[i-3][j+3] = '\033[31m' + player.piece + \
+                        '\033[39m'
+                    self.draw_board()
+                    print('\033[0;32m' + f"  {player.piece} has won! "
+                          f"Congratulations {player.name}")
+                    print(f"  {player.name}! "
+                          f"You have taken {player.player_moves} moves"
+                           " in this game" + '\033[39m')
                     self.game_Over = True
 
         # break backwards diagonals into blocks of four, check if all are
-        # the player's piece and if so colour them red and set game_over to true
+        # the player's piece and if so colour them red and
+        #  set game_over to true
 
-        for i in range(3,6):
-            for j in range(6,2,-1):
-                if board[i][j] == player.piece and self.board[i-1][j-1] == player.piece and self.board[i-2][j-2] == player.piece and self.board[i-3][j-3] == player.piece:
-                    self.board[i][j] = '\033[31m' + player.piece + '\033[39m'
-                    self.board[i-1][j-1] = '\033[31m' + player.piece + '\033[39m'
-                    self.board[i-2][j-2] = '\033[31m' + player.piece + '\033[39m'
-                    self.board[i-3][j-3] = '\033[31m' + player.piece + '\033[39m'
-                    self.draw_board()
-                    print('\033[0;32m' + f"  {player.piece} has won!  Congratulations {player.name}")
-                    print(f"  {player.name}! You have taken {player.player_moves} moves in this game"  + '\033[39m')
-                    self.game_Over = True
+        for i in range(3, 6):
+            for j in range(6, 2, -1):
+                if (self.board[i][j] == player.piece and
+                        self.board[i-1][j-1] == player.piece and
+                        self.board[i-2][j-2] == player.piece and
+                        self.board[i-3][j-3] == player.piece):
 
+                        self.board[i][j] = '\033[31m' + player.piece + \
+                            '\033[39m'
+                        self.board[i-1][j-1] = '\033[31m' + player.piece + \
+                            '\033[39m'
+                        self.board[i-2][j-2] = '\033[31m' + player.piece + \
+                            '\033[39m'
+                        self.board[i-3][j-3] = '\033[31m' + player.piece + \
+                            '\033[39m'
+                        self.draw_board()
+                        print('\033[0;32m' + f"  {player.piece} has won! "
+                              f"Congratulations {player.name}")
+                        print(f"  {player.name}! "
+                              f"You have taken {player.player_moves} moves"
+                              " in this game" + '\033[39m')
+                        self.game_Over = True
 
     def play_again(self):
-        """ 
+        """
         Asks the user  if they want to play again
         returns true if user wants to play again, exit the program if not
 
@@ -401,23 +458,29 @@ class Board(ClearMixin):
 
         bye: str - used to store farewell message
 
-        Returns: boolean (true) - if user wishes to play again, exits the program if not
+        Returns: boolean (true) - if user wishes to play again,
+         exits the program if not
          """
 
         ans = ""
         valid_input = False
-        while not valid_input: # accepts user input and validates it
-            ans = input("  Enter 'Quit' to finish or 'again' to play again : \n")
+        # accepts user input and validates it
+        while not valid_input:
+            ans = input(
+                        "  Enter 'Quit' to finish or" +
+                        " 'again' to play again : \n")
             lowerans = ans.lower()
-            if lowerans == "quit": # if user wants to quit print messsage and exit
+            # if user wants to quit print messsage and exit
+            if lowerans == "quit":
                 valid_input = True
                 print('\033[31m')
                 bye = pyfiglet.figlet_format("                    BYE BYE  ")
                 print(bye)
                 print('\033[39m')
-                print("                    THANKS FOR PLAYING C4 IT'S BEEN A BLAST!")
+                print("                    THANKS FOR" +
+                      "PLAYING C4 IT'S BEEN A BLAST!")
                 exit()
             elif lowerans == "again":
-                valid_input = True # if user wants to play again return true 
+                # if user wants to play again return true
+                valid_input = True
         return True
-        

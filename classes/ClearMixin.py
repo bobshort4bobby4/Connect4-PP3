@@ -7,6 +7,7 @@ Classes: ClearMixin
 
 import os
 
+
 class ClearMixin():
     """
     A mixin function to clear the screen  copy/paste from codecap.org
@@ -14,11 +15,11 @@ class ClearMixin():
     Parameters: None
 
     Variables: None
-    
+
     Returns: None.
     """
-    @staticmethod   
-    def clrscr():  # Check if Operating System is Mac and Linux or Windows 
+    @staticmethod
+    def clrscr():  # Check if Operating System is Mac and Linux or Windows
         if os.name == 'posix':
             _ = os.system('clear')
         else:
