@@ -200,9 +200,9 @@ More information regarding the game can be found [here](https://en.wikipedia.org
   
 ### WAVE Accessibilty Tool
   The deployed was tested using this site.  The first test produced one contrast error, caused by the red colour of the 'Run Program' button not contrasting  
-  with the background image I had choosen.  I changed the button colour to blue. This adjusted site produced no errors, result is shown below.  
+  well with the background image I had choosen.  I changed the button colour to blue. This adjusted site produced no errors, result is shown below.  
     
-  ![a screen shot of the WAVE test result]()  
+  ![a screen shot of the WAVE test result](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/waveresult-pp3.png)  
     
 ### CSS Validation  
   I made minimal changes to the css provided as part of the template provided, namely changes to the positioning of the terminal, adding a background image and changing the colour of the 'Run Program' to blue.  I tested the `body` and `button` css fragments using the w3c validator and no errors or warning were generated.
@@ -212,6 +212,26 @@ More information regarding the game can be found [here](https://en.wikipedia.org
   I submitted all python files to pep8online.com and cleared all errors and warnings.  
   Screen shots of the results can be found [here](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/pep8linter.md)
   
+### LightHouse Testing
+  The Lighthouse testing tool built in to the Chrome browser was used on the deployed web-site. A screen shot of the result is shown below.  
+  
+  ![a screen shot of the lighthouse testing result]()
+  
+  
+### Manual Validation of User Input
+  
+### Testing of Win Check and Scoring Algorithms
+  In order to ensure the win check and scoring aspects of the program were functioning correctly. I inserted a nested for loop in the relevant scripts, which placed consecutive numbers in the array, the code and the resulting array is shown below.  
+  
+  ![a screen shot of nested loops used to fill array with test data]()
+    
+    
+  ![a screen shot of resulting array]()
+  
+  I then put a print command in the scripts which output each slice to be assessed to the terminal.  I was then able to run the program in debug mode and manually check that the correct slices were being generated at each iteration of the scoring/check win function.  
+  An example of these terminal outputs is shown below.  
+  
+  ![a screen shot of output slices]()
   
 </details>
   
