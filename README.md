@@ -113,7 +113,7 @@ More information regarding the game can be found [here](https://en.wikipedia.org
     
   ![a screenshot of the levelscreen](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/difflevelinput-pp3.png)  
     
- After the User picks a level the screen shows which player is to go first, then pauses before clearing and displaying the initial board.
+ After the User picks a level the screen shows which player is to go first (randomly choosen by program), then pauses before clearing and displaying the initial board.
   
   ### Game Screen  
   The game screen consists of the board display and a prompt to the User to pick a move.   
@@ -138,32 +138,63 @@ More information regarding the game can be found [here](https://en.wikipedia.org
   ![a screen shot of the finish message](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/finishscreen-pp3.png)  
     
   ### Future Features
-  At some point as time resources allowed I would like to implement the MiniMax algorithm for the hard level.
+  At some point as time resources allow I would like to implement the MiniMax algorithm for the hard level.
   This is a recursive algorith used to determine optimal moves.  
   It creates a tree for each possible gameboard and backtracks through each to score each board.  
   
   It would improve the visual aspect of the program if the two types of pieces were coloured differently  
-  and highlighted in a third colour when a line of four was made.
-  
-    
-    
-  
-
-  
-  
- 
-       
-      
-      
-      
-      
-      
-      
-      
-      
+  and highlighted in a third colour when a line of four was made. 
   </details>
 
-
+# Technologies Used
+<details>
+  <summary>Technologies Used</summary>
+  
+  #### Languages Used
+  
+  - Python
+  - CSS  
+  
+  #### Python Libraries
+  
+  [random](https://docs.python.org/3/library/random.html) was used to generate a random integer  
+  used in the computer_move_random method of the Player Class and to determine which player should  
+  take first turn in the display_intro method of the Board Class.
+  
+  [copy](https://docs.python.org/3/library/copy.html?highlight=copy#module-copy) deepcopy() used to copy board state  
+  into temp_board in computer_move_scored() method of the Player Class.  
+    
+  [time](https://docs.python.org/3/library/time.html?highlight=time#module-time) used to pause game in the init_game()  
+  method of the Player Class.  
+    
+  [pyfiglet](https://www.geeksforgeeks.org/python-ascii-art-using-pyfiglet-module/) used to create ASCII art text in  
+  display_intro() method of Board Class and play_again() method of Board Class.  
+    
+    
+  
+  #### Applications Used
+  
+  - [Balsamiq](https://www.balsamiq.com) was used to create wireframes for this project.
+  - [LucidChart](https://www.lucidchart.com) used for the flowchart in readme file.
+  - [Git](https://git-scm.com/) Git was used for version control.
+  - [GitHub](https://github.com/) GitHub is used to store the projects code.
+  - [Heroku](http://www.heroku.com/) Heroku.com was used to deploy the site.
+  - [Chrome Developer Tools](https://developer.chrome.com/docs/devtools/) used for layout and responsive testing.
+  - [Wave](https://wave.webaim.org/) used for accessibility testing.
+  - [favICO.com](https://convertico.com/favicon/) used for creating favicon.
+  - [W3 Validator](https://jigsaw.w3.org/css-validator/) used to test css code.
+  - [pep8online](http://pep8online.com/) pep8online used to validate python code
+  - [WAVE](https://wave.webaim.org/) used to check for accessibility.
+  - [Windows snip & sketch](https://www.microsoft.com/en-us/p/snip-sketch/9mz95kl8mr0l?activetab=pivot:overviewtab) used to capture screenshots for readme file.
+  - [techsini.com](https://techsini.com/) used to create the mock-up used in the readme file.
+  
+    
+  
+  
+ </details>
+  
+  
+  
 # Deployment
 
 <details>
@@ -206,7 +237,7 @@ To deploy my project I followed the steps below.
   
 ![a screen shot of the buid succeeded](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/buildsucceeded-pp3.png)
   
-[**The site is now live](https://minipproject.herokuapp.com/)
+[The site is now live](https://minipproject.herokuapp.com/)
   
 ![a picture of the deployed site](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/deployedheroku-pp3.png)
 
@@ -343,7 +374,6 @@ Details of how I implemented this scoring scheme are given below, I should say t
 
 
 
-mockup website  https://techsini.com/
 
 
 
