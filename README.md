@@ -188,12 +188,32 @@ More information regarding the game can be found [here](https://en.wikipedia.org
   - [Windows snip & sketch](https://www.microsoft.com/en-us/p/snip-sketch/9mz95kl8mr0l?activetab=pivot:overviewtab) used to capture screenshots for readme file.
   - [techsini.com](https://techsini.com/) used to create the mock-up used in the readme file.
   
-    
-  
-  
  </details>
   
+# Testing
+
+
+<details>
+
+  <summary>Testing</summary>
   
+  
+### WAVE Accessibilty Tool
+  The deployed was tested using this site.  The first test produced one contrast error, caused by the red colour of the 'Run Program' button not contrasting  
+  with the background image I had choosen.  I changed the button colour to blue. This adjusted site produced no errors, result is shown below.  
+    
+  ![a screen shot of the WAVE test result]()  
+    
+### CSS Validation  
+  I made minimal changes to the css provided as part of the template provided, namely changes to the positioning of the terminal, adding a background image and changing the colour of the 'Run Program' to blue.  I tested the `body` and `button` css fragments using the w3c validator and no errors or warning were generated.
+   
+   
+### PeP8 Linter
+  I submitted all python files to pep8online.com and cleared all errors and warnings.  
+  Screen shots of the results can be found [here](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/pep8linter.md)
+  
+  
+</details>
   
 # Deployment
 
@@ -402,5 +422,5 @@ Details of how I implemented this scoring scheme are given below, I should say t
 
 
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+
 
