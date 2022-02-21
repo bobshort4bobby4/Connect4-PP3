@@ -134,13 +134,13 @@ class Board(ClearMixin):
         print(title)
         print("  A version of the classic board game 'Connect4'," +
               "first sold in 1974.")
-        print("  There are over 4.5 trillion combinations" +
+        print("  There are over 4.5 trillion combinations " +
               "of tiles possible on the ")
         print("  standard 6 by 7 board.")
-        print("  The object of the game is to connect" +
+        print("  The object of the game is to connect " +
               "four of your colour tiles in a")
         print("  line, the  line can be in any direction.")
-        print("  If all the pieces are used before a line is" +
+        print("  If all the pieces are used before a line is " +
               "found the game is a draw")
 
         input("  Press Enter To Continue...\n")
@@ -252,7 +252,7 @@ class Board(ClearMixin):
             try:
                 print("")
                 print(" ", player.name, "!")
-                col = int(input(f" Pick a column to drop an {player.piece} "))
+                col = int(input(f"  Pick a column to drop an {player.piece} "))
 
                 if col < 0 or col > 6:
                     # checks if input number is within valid range
