@@ -103,7 +103,7 @@ More information regarding the game can be found [here](https://en.wikipedia.org
   On loading the initial screen displays a title in ascii art and some background information about the game. Brief play instructions are also included. 
   The game pauses on this screen untill the user hits the return key.
     
-  ![a screen shot of the welcome screen]()
+  ![a screen shot of the welcome screen](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/welcomescreen-pp3.png)
     
   ### Level Screen
   When the User presses the return key, the level screen is displayed.  
@@ -111,15 +111,15 @@ More information regarding the game can be found [here](https://en.wikipedia.org
   This setting governs how the computer moves are picked.  
   The User is required to pick one from the three options of Easy, Medium or Hard.  
     
-  ![a screenshot of the levelscreen]()  
+  ![a screenshot of the levelscreen](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/difflevelinput-pp3.png)  
     
- After the User picks a level the screen showa which player is to go first, then pauses before clearing and displaying the initial board.
+ After the User picks a level the screen shows which player is to go first, then pauses before clearing and displaying the initial board.
   
   ### Game Screen  
   The game screen consists of the board display and a prompt to the User to pick a move.   
   The computer moves happen instantly after each User move.  
     
-  ![a screen shot of the initial game screen]()  
+  ![a screen shot of the initial game screen](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/initialscreen-pp3.png)  
     
     
   ### Game Over
@@ -129,13 +129,13 @@ More information regarding the game can be found [here](https://en.wikipedia.org
   If the User opts to exit the finish screen is displayed and the program exits,  
   alternatively the program loops back to the welcome screen and a new game is initiated.
     
-  ![a screenshot of the game over screen]()  
+  ![a screenshot of the game over screen](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/gamewon-pp3.png)  
     
     
   ### Finish Screen
   If the User opts to quit a message is displayed and the program finishes.  
     
-  ![a screen shot of the finish message]()  
+  ![a screen shot of the finish message](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/finishscreen-pp3.png)  
     
   ### Future Features
   At some point as time resources allowed I would like to implement the MiniMax algorithm for the hard level.
