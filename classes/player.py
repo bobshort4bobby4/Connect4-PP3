@@ -5,7 +5,6 @@ representing the players of the game
 Class: Player
 """
 
-
 import random
 import copy
 import time

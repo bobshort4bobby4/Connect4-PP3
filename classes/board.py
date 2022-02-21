@@ -3,7 +3,6 @@ Module containing the class to create, track and manipulate the game state
 
 Classes: Board
 """
-import sys
 import pyfiglet
 from classes import CustomError
 from classes.ClearMixin import ClearMixin
@@ -477,7 +476,7 @@ class Board(ClearMixin):
                 bye = pyfiglet.figlet_format("                    BYE BYE  ")
                 print(bye)
                 print('\033[39m')
-                print("                    THANKS FOR" +
+                print("                    THANKS FOR " +
                       "PLAYING C4 IT'S BEEN A BLAST!")
                 exit()
             elif lowerans == "again":
