@@ -199,8 +199,8 @@ More information regarding the game can be found [here](https://en.wikipedia.org
   
   
 ### WAVE Accessibilty Tool
-  The deployed was tested using this site.  The first test produced one contrast error, caused by the red colour of the 'Run Program' button not contrasting  
-  well with the background image I had choosen.  I changed the button colour to blue. This adjusted site produced no errors, result is shown below.  
+  The deployed was tested using this site. The first test produced one contrast error, caused by the red colour of the 'Run Program' button not contrasting well with the background image I had choosen.  
+I changed the button colour to blue. This adjusted site produced no errors, result is shown below.  
     
   ![a screen shot of the WAVE test result](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/waveresult-pp3.png)  
     
@@ -223,15 +223,37 @@ More information regarding the game can be found [here](https://en.wikipedia.org
 ### Testing of Win Check and Scoring Algorithms
   In order to ensure the win check and scoring aspects of the program were functioning correctly. I inserted a nested for loop in the relevant scripts, which placed consecutive numbers in the array, the code and the resulting array is shown below.  
   
-  ![a screen shot of nested loops used to fill array with test data]()
+  ![a screen shot of nested loops used to fill array with test data](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/nestloopfortest-pp3.png)
     
     
-  ![a screen shot of resulting array]()
+  ![a screen shot of resulting array](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/testingarray-pp3.png)
   
   I then put a print command in the scripts which output each slice to be assessed to the terminal.  I was then able to run the program in debug mode and manually check that the correct slices were being generated at each iteration of the scoring/check win function.  
   An example of these terminal outputs is shown below.  
   
-  ![a screen shot of output slices]()
+  ![a screen shot of output slices](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/diagstest-pp3.png)  
+    
+  I found several mistakes either in index assignment or in code blocks wrongly indented which were causing errors using this method.  
+  An example is shown below where the column loop was working incorrectly causing only the first column to be scored, this was an indentation error.
+  
+  ![a screen shot of a bug found](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/scoringtesting%20bug%20found-pp3.png)  
+    
+    
+  ### Testing game for achievement of User Goals.  
+  
+  
+  |                       Goal                                              |                          Outcome                                                               |
+  |-------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+  |The rules and final aim of the game to be obvious                        |Instructions displayed on welcome screen.                                                       |
+  |To be entertained and engaged with the game from the initial load.       |Colour used in an effort to engage user.                                                        |
+  |The game to function correctly and gameplay to be intuitive.             |No logic errors in code, actions to be taken intuitive.                                         |
+  |To be able to play the game at different difficulty levels.              |Three levels provided.                                                                          |
+  |To have any incorrect input rejected and the error explained clearly.    |All User input validated and appropriate messages output to User.                               |     |To be able to gauge/score my performance.                                |Moves taken is shown to the player.                                                             |     |To be able to play the game on different devices.                        |Game works on range of devices.                                                                 |
+  |To provide a fun game.                                                   |Game provides a reasonable challenge and is easy to use.                                        |
+  |To provide a game to stimulate mental function.                          |Game play requires attention and focus.                                                         |
+  |To encourage continued use of the game.                                  |Colour used in an effort to entertain user and encourage continued use.                         |
+   
+    
   
 </details>
   
