@@ -92,6 +92,77 @@ More information regarding the game can be found [here](https://en.wikipedia.org
  
 </details>
 
+  
+  # Features
+    
+  <details>
+     <summary>Features</summary>
+  
+  
+  ### Welcome Screen
+  On loading the initial screen displays a title in ascii art and some background information about the game. Brief play instructions are also included. 
+  The game pauses on this screen untill the user hits the return key.
+    
+  ![a screen shot of the welcome screen]()
+    
+  ### Level Screen
+  When the User presses the return key, the level screen is displayed.  
+  This screen shows the 3 possible difficulty levels the user may choose.   
+  This setting governs how the computer moves are picked.  
+  The User is required to pick one from the three options of Easy, Medium or Hard.  
+    
+  ![a screenshot of the levelscreen]()  
+    
+ After the User picks a level the screen showa which player is to go first, then pauses before clearing and displaying the initial board.
+  
+  ### Game Screen  
+  The game screen consists of the board display and a prompt to the User to pick a move.   
+  The computer moves happen instantly after each User move.  
+    
+  ![a screen shot of the initial game screen]()  
+    
+    
+  ### Game Over
+  The players take turns until the game is won or drawn.  
+  A message is displayed stating if a win or draw, which player won and how many moves were taken by them.  
+  The User is asked to input either quit or play again.  
+  If the User opts to exit the finish screen is displayed and the program exits,  
+  alternatively the program loops back to the welcome screen and a new game is initiated.
+    
+  ![a screenshot of the game over screen]()  
+    
+    
+  ### Finish Screen
+  If the User opts to quit a message is displayed and the program finishes.  
+    
+  ![a screen shot of the finish message]()  
+    
+  ### Future Features
+  At some point as time resources allowed I would like to implement the MiniMax algorithm for the hard level.
+  This is a recursive algorith used to determine optimal moves.  
+  It creates a tree for each possible gameboard and backtracks through each to score each board.  
+  
+  It would improve the visual aspect of the program if the two types of pieces were coloured differently  
+  and highlighted in a third colour when a line of four was made.
+  
+    
+    
+  
+
+  
+  
+ 
+       
+      
+      
+      
+      
+      
+      
+      
+      
+  </details>
+
 
 # Deployment
 
@@ -141,6 +212,113 @@ To deploy my project I followed the steps below.
 
 
 </details>
+
+
+ # Note on Difficulty Options  
+ 
+ <details>
+  <summary>Difficulty Levels</summary>
+  
+The computer moves are calculated in different ways for each of the levels.    
+  
+The first (easy level) is completely random, a random number is picked in the column range and provided that column has remaining space, the piece is dropped there.  
+  
+The medium and hard levels use a simple scoring scheme which gives every position on the board a score based on that particular moves value to the computer player.  
+The piece is dropped in the column with the highest score.  
+All possible positions are scored on the hard level, some of the diagonal line slices are not scored on the medium level, thereby creating a "blind spot" for the computer.  
+  
+This method of scoring is by no means perfect but offers a reasonable challenge to the casual player.  
+  
+Details of how I implemented this scoring scheme are given below, I should say that the general method I learned from various resources on the internet but the implementation is my own.  I choose to place an token (in my case '*' into the temporary board for scoring which I did not see any other implementation use (others placed their player piece), this allowed me to be more specific in the scoring process.  As to the merits or disadvantages of this way of doing it I have not tested.
+
+###### Easy Level
+  
+  This metod picks a column for the computer player on easy difficulty level.
+  
+  If the choosen column not full:  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pick a random column number in range zero to six  
+      return that column number  
+  
+    
+###### Medium Level
+  
+  These are the steps I used to pick a column for the computer player on medium difficulty level.
+    
+  **computer_move_scored() Method of Player Class**  
+  
+  Determine opposing player piece type, store in op_piece.  
+  Determine columns which are not full, store in an array valid_cols, with a -1 entry if column full.  
+  Determine first available position in each column, store in an array first_available_row.  
+  For each valid column in valid_cols:  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make a deepcopy of state of the playing board named temp_board.  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Place a '*' into the lowest empty position of that column.  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send temp_board to player.scoring_function method.  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Append returned score to final_scores array.  
+  Determine index of highest score in final_scores array, store in variable col.  
+  Return col.    
+    
+    
+
+ **player.scoring_function Method of Player Class** 
+    
+  Create score variable  
+  For each row in temp_board:  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create an array for each row called row_array  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For each row_array:  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slice into sections of four positions, stored in array called slice4.  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send each slice4 to player.scoring_logic.  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add returned value to score.  
+    
+  For each column in temp_board:  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create an array for each column called column_array  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For each column_array:  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slice into sections of four positions, stored in array called slice4.  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send each slice4 to player.scoring_logic.  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add returned value to score.    
+    
+  For each forward-leaning diagonal column (left-hand side) in temp_board:  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create an array for each section called diagfor_array  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For each diagfor_array:  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slice into sections of four positions, stored in array called slice4.  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send each slice4 to player.scoring_logic.  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add returned value to score.    
+    
+  For each backward-leaning diagonal column(right-hand side) in temp_board:  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create an array for each row called diagback_array  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For each diagback_array:  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slice into sections of four positions, stored in array called slice4.  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send each slice4 to player.scoring_logic.  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add returned value to score.  
+  Return score  
+    
+    
+ **player.scoring_logic Method of Player Class** 
+    
+  Create score variable.  
+  Add value to score for each slice4 on the following basis.  
+  If slice4 contains:  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 player pieces and 1  asterisk  add 2000  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 player pieces and 1  asterisk add 1000  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 player piece and 3 empty add 100  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Is column 3 add 50.  
+  
+  If slice4 contains:  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 op_piece and 1 asterisk add 10000  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 op_piece and 1 empty add 2000  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 op_piece add 1500  
+    
+  If slice4 contains op-pieces in the middle indexes and an asterisk at either index[0] or index[3] add 7000.  
+  Return score  
+    
+  
+  
+  ###### Hard Level
+  
+  The steps are the same as the medium level except all diagonal columns are scored.
+
+</details>
+  
+
 
 
 
