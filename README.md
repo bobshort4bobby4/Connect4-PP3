@@ -28,7 +28,7 @@ The winner is the first player to connect a line of four of their particular col
 
 If neither player connects a line of four before the grid is full then the game is a draw.  
 
-More information regarding the game can be found [here](https://en.wikipedia.org/wiki/Connect_Four)  
+More information regarding the game can be found at this link. [Connect4 Wikipedia Page is here](https://en.wikipedia.org/wiki/Connect_Four)  
 
 
 
@@ -82,9 +82,9 @@ More information regarding the game can be found [here](https://en.wikipedia.org
   
   ### Background Image
   
-  In order to add visual appeal I useda repeating tile as a background image.  It is a picture of a section of the gameboard.  
+  In order to add visual appeal I used a repeating tile as a background image.  It is a picture of a section of the gameboard.  
   
-  [Link to background tile]()  
+  [Link to background tile](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv1hN01fHPr6M-NnNxNb7mD1u5nlTCVo1F7A&usqp=CAU)  
     
     
   ![the background image tile](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/connect-tile-pp3.jpg)
@@ -199,7 +199,7 @@ More information regarding the game can be found [here](https://en.wikipedia.org
   
   
 ### WAVE Accessibilty Tool
-  The deployed was tested using this site. The first test produced one contrast error, caused by the red colour of the 'Run Program' button not contrasting well with the background image I had choosen.  
+  The deployed version was tested using this site. The first test produced one contrast error, caused by the red colour of the 'Run Program' button not contrasting well with the background image I had choosen.  
 I changed the button colour to blue. This adjusted site produced no errors, result is shown below.  
     
   ![a screen shot of the WAVE test result](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/waveresult-pp3.png)  
@@ -215,7 +215,7 @@ I changed the button colour to blue. This adjusted site produced no errors, resu
 ### LightHouse Testing
   The Lighthouse testing tool built in to the Chrome browser was used on the deployed web-site. A screen shot of the result is shown below.  
   
-  ![a screen shot of the lighthouse testing result]()
+  ![a screen shot of the lighthouse testing result](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/lighthouseresult-pp3.png)
   
   
 ### Manual Validation of User Input
@@ -418,7 +418,7 @@ Details of how I implemented this scoring scheme are given below, I should say t
 
 
 
-
+[hereitis](https://docs.google.com/spreadsheets/d/15SZgouY_8Q-GX0ia4hHf1ua2u9JLxhJGwFfNRMPtTl4/edit?usp=sharing)
 
 
 
