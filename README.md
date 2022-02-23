@@ -48,13 +48,13 @@ More information regarding the game can be found at this link. [Connect4 Wikiped
   - the rules and final aim of the game to be obvious so that I can use the site easily.  
   - to be entertained and engaged with the game from the initial load so I will have a positive experience using the site.  
   - the game to function correctly and gameplay to be intuitive so that I do not have any frustrating emotions using the site.  
-  - to be able to play the game on various different devices so that I can challenge myself at different skill levels.
+  - to be able to play the game on various different devices so that I can play when convenient.
   - to have any incorrect input rejected and the error explained clearly and quickly so I do not have any frustrating emotions using the site. 
    
   ##### Return/frequent Visitor Goals.
   As a return/frequent visitor I want:  
   - to be able to gauge my performance so that I can track my skill level .
-  - to be able to challenge myself by increasing difficulty of the game so that I can challange myself.
+  - to be able to increase difficulty of the game so that I can challenge myself.
   - to be able to play the game on various different devices so that I can access the site when convenient.
             
   ##### Website's Owner Goals.
@@ -159,17 +159,17 @@ More information regarding the game can be found at this link. [Connect4 Wikiped
   
   #### Python Libraries
   
-  [random](https://docs.python.org/3/library/random.html) was used to generate a random integer  
-  used in the computer_move_random method of the Player Class and to determine which player should  
+  [random](https://docs.python.org/3/library/random.html) was used to generate a random integer
+  used in the computer_move_random method of the Player Class and to determine which player should
   take first turn in the display_intro method of the Board Class.
   
-  [copy](https://docs.python.org/3/library/copy.html?highlight=copy#module-copy) deepcopy() used to copy board state  
+  [copy](https://docs.python.org/3/library/copy.html?highlight=copy#module-copy) deepcopy() used to copy board state
   into temp_board in computer_move_scored() method of the Player Class.  
     
-  [time](https://docs.python.org/3/library/time.html?highlight=time#module-time) used to pause game in the init_game()  
+  [time](https://docs.python.org/3/library/time.html?highlight=time#module-time) used to pause game in the init_game()
   method of the Player Class.  
     
-  [pyfiglet](https://www.geeksforgeeks.org/python-ascii-art-using-pyfiglet-module/) used to create ASCII art text in  
+  [pyfiglet](https://www.geeksforgeeks.org/python-ascii-art-using-pyfiglet-module/) used to create ASCII art text in
   display_intro() method of Board Class and play_again() method of Board Class.  
     
     
@@ -207,7 +207,7 @@ I changed the button colour to blue. This adjusted site produced no errors, resu
   ![a screen shot of the WAVE test result](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/waveresult-pp3.png)  
     
 ### CSS Validation  
-  I made minimal changes to the css provided as part of the template provided, namely changes to the positioning of the terminal, adding a background image and changing the colour of the 'Run Program' to blue.  I tested the `body` and `button` css fragments using the w3c validator and no errors or warning were generated.
+  I made minimal changes to the css integral to  the template provided, namely changes to the positioning of the terminal, adding a background image and changing the colour of the 'Run Program' to blue.  I tested the `body` and `button` css fragments using the w3c validator and no errors or warning were generated.
    
    
 ### PeP8 Linter
@@ -261,6 +261,10 @@ I changed the button colour to blue. This adjusted site produced no errors, resu
   |To encourage continued use of the game.                                  |Colour used in an effort to entertain user and encourage continued use.                         |
    
     
+  ### Issues
+  If the deployed game is left unattended for any period of time, it freezes and will not take input. The browser needs to be refreshed or the 'Run Program' button clicked to start a new game.  This is not an issue on a locally run version of the game. I do not know why this is happening.  
+    
+If the human player is drawn to take first turn it is still quite easy to win the game. Because the computer always scores the board using the same method it is possible to build up an knowledge as to where the piece will be placed. After repeated games it is possible to learn ways of winning every time . 
   
 </details>
   
@@ -313,6 +317,19 @@ To deploy my project I followed the steps below.
 
 </details>
 
+  
+  # Credits
+  
+  <details>
+  
+  <summary>Credits</summary>
+  
+  In order to learn how computers play against human opponents I used many resources on the internet, chief amongst these were [Wikipedia](https://en.wikipedia.org/wiki/Category:Game_artificial_intelligence) and [Keith Galli's github](https://github.com/KeithGalli?tab=repositories).   
+  
+  I realise this is a huge area and my attempt at "AI" is rather feeble compared to what can be achieved.  I felt I could not afford to spend the time to try to understand the more involved methods of implementing this program.
+  
+  Huge thanks to my CI Mentor Mr. Benjamin Kavanagh.
+</details>
 
  # Note on Difficulty Options  
  
