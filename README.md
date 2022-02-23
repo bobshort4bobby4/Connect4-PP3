@@ -1,6 +1,8 @@
 
 # **Connect4**
 
+(CTRL + Click to open links in new window)
+
 The deployed site can be found [here](https://minipproject.herokuapp.com/)
 
 Github repository can be accessed [here](https://github.com/bobshort4bobby4/Connect4-PP3)   
@@ -219,6 +221,11 @@ I changed the button colour to blue. This adjusted site produced no errors, resu
   
   
 ### Manual Validation of User Input
+  I manually tested all aspects of user input and the results are linked below.
+  
+  
+  
+[Link to User input testing data](https://docs.google.com/spreadsheets/d/15SZgouY_8Q-GX0ia4hHf1ua2u9JLxhJGwFfNRMPtTl4/edit?usp=sharing)
   
 ### Testing of Win Check and Scoring Algorithms
   In order to ensure the win check and scoring aspects of the program were functioning correctly. I inserted a nested for loop in the relevant scripts, which placed consecutive numbers in the array, the code and the resulting array is shown below.  
@@ -418,7 +425,6 @@ Details of how I implemented this scoring scheme are given below, I should say t
 
 
 
-[hereitis](https://docs.google.com/spreadsheets/d/15SZgouY_8Q-GX0ia4hHf1ua2u9JLxhJGwFfNRMPtTl4/edit?usp=sharing)
 
 
 
