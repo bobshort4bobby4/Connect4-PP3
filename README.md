@@ -359,7 +359,7 @@ Details of how I implemented this scoring scheme are given below, I should say t
 
 ###### Easy Level
   
-  This metod picks a column for the computer player on easy difficulty level.
+  This method picks a column for the computer player on easy difficulty level.
   
   If the choosen column not full:  
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pick a random column number in range zero to six  
