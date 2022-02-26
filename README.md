@@ -264,7 +264,17 @@ I changed the button colour to blue. This adjusted site produced no errors, resu
   ### Issues
   If the deployed game is left unattended for any period of time, it freezes and will not take input. The browser needs to be refreshed or the 'Run Program' button clicked to start a new game.  This is not an issue on a locally run version of the game. I do not know why this is happening.  
     
-If the human player is drawn to take first turn it is still quite easy to win the game. Because the computer always scores the board using the same method it is possible to build up an knowledge as to where the piece will be placed. After repeated games it is possible to learn ways of winning every time . 
+If the human player is drawn to take first turn it is still quite easy to win the game. Because the computer always scores the board using the same method it is possible to build up an knowledge as to where the piece will be placed. After repeated games it is possible to learn ways of winning every time.  
+    
+    
+  ### Video Screen Capture Of Deployed Heroku APP.
+    
+    
+  
+
+https://user-images.githubusercontent.com/77545206/155849867-20b45e68-27da-4be8-a268-18b0f3384693.mp4
+
+
   
 </details>
   
@@ -326,7 +336,6 @@ To deploy my project I followed the steps below.
   
   In order to learn how computers play against human opponents I used many resources on the internet, chief amongst these were [Wikipedia](https://en.wikipedia.org/wiki/Category:Game_artificial_intelligence) and [Keith Galli's github](https://github.com/KeithGalli?tab=repositories).   
   
-  I realise this is a huge area and my attempt at "AI" is rather feeble compared to what can be achieved.  I felt I could not afford to spend the time to try to understand the more involved methods of implementing this program.
   
   Huge thanks to my CI Mentor Mr. Benjamin Kavanagh.
 </details>
@@ -435,11 +444,6 @@ Details of how I implemented this scoring scheme are given below, I should say t
 
 </details>
   
-
-
-
-
-
 
 
 
