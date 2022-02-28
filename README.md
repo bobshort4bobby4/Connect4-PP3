@@ -102,7 +102,7 @@ More information regarding the game can be found at this link. [Connect4 Wikiped
   
   
   ### Welcome Screen
-  On loading the initial screen displays a title in ascii art and some background information about the game. Brief play instructions are also included. 
+  On loading the initial screen displays a title in ASCII art and some background information about the game. Brief play instructions are also included. 
   The game pauses on this screen untill the user hits the return key.
     
   ![a screen shot of the welcome screen](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/welcomescreen-pp3.png)
@@ -139,6 +139,107 @@ More information regarding the game can be found at this link. [Connect4 Wikiped
     
   ![a screen shot of the finish message](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/finishscreen-pp3.png)  
     
+    
+  ### Difficulty Levels
+  The computer moves are calculated in different ways for each of the levels.    
+  
+The first (easy level) is completely random, a random number is picked in the column range and provided that column has remaining space, the piece is dropped there.  
+  
+The medium and hard levels use a simple scoring scheme which gives every position on the board a score based on that particular moves value to the computer player.  
+The piece is dropped in the column with the highest score.  
+All possible positions are scored on the hard level, some of the diagonal line slices are not scored on the medium level, thereby creating a "blind spot" for the computer.  
+  
+This method of scoring is by no means perfect but offers a reasonable challenge to the casual player.  
+  
+Details of how I implemented this scoring scheme are shown in the pseudocode below, I should say that the general method I learned from various resources on the internet but the implementation is my own.  I choose to place an token (in my case '*' into the temporary board for scoring which I did not see any other implementation use (others placed their player piece), this allowed me to be more specific in the scoring process.  As to the merits or disadvantages of this way of doing it I have not tested.
+
+###### Easy Level
+  
+  This method picks a column for the computer player on easy difficulty level.
+  
+  If the choosen column not full:  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pick a random column number in range zero to six  
+      return that column number  
+  
+    
+###### Medium Level
+  
+  These are the steps I used to pick a column for the computer player on medium difficulty level.
+    
+  **computer_move_scored() Method of Player Class**  
+  
+  Determine opposing player piece type, store in op_piece.  
+  Determine columns which are not full, store in an array valid_cols, with a -1 entry if column full.  
+  Determine first available position in each column, store in an array first_available_row.  
+  For each valid column in valid_cols:  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make a deepcopy of state of the playing board named temp_board.  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Place a '*' into the lowest empty position of that column.  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send temp_board to player.scoring_function method.  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Append returned score to final_scores array.  
+  Determine index of highest score in final_scores array, store in variable col.  
+  Return col.    
+    
+    
+
+ **player.scoring_function Method of Player Class** 
+    
+  Create score variable  
+  For each row in temp_board:  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create an array for each row called row_array  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For each row_array:  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slice into sections of four positions, stored in array called slice4.  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send each slice4 to player.scoring_logic.  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add returned value to score.  
+    
+  For each column in temp_board:  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create an array for each column called column_array  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For each column_array:  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slice into sections of four positions, stored in array called slice4.  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send each slice4 to player.scoring_logic.  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add returned value to score.    
+    
+  For each forward-leaning diagonal column (left-hand side) in temp_board:  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create an array for each section called diagfor_array  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For each diagfor_array:  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slice into sections of four positions, stored in array called slice4.  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send each slice4 to player.scoring_logic.  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add returned value to score.    
+    
+  For each backward-leaning diagonal column(right-hand side) in temp_board:  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create an array for each row called diagback_array  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For each diagback_array:  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slice into sections of four positions, stored in array called slice4.  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send each slice4 to player.scoring_logic.  
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add returned value to score.  
+  Return score  
+    
+    
+ **player.scoring_logic Method of Player Class** 
+    
+  Create score variable.  
+  Add value to score for each slice4 on the following basis.  
+  If slice4 contains:  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 player pieces and 1  asterisk  add 2000  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 player pieces and 1  asterisk add 1000  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 player piece and 3 empty add 100  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Is column 3 add 50.  
+  
+  If slice4 contains:  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 op_piece and 1 asterisk add 10000  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 op_piece and 1 empty add 2000  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 op_piece add 1500  
+    
+  If slice4 contains op-pieces in the middle indexes and an asterisk at either index[0] or index[3] add 7000.  
+  Return score  
+    
+  
+  
+  ###### Hard Level
+  
+  The steps are the same as the medium level except all diagonal columns are scored.
+
+  
+    
   ### Future Features
   At some point as time resources allow I would like to implement the MiniMax algorithm for the hard level.
   This is a recursive algorith used to determine optimal moves.  
@@ -172,6 +273,43 @@ More information regarding the game can be found at this link. [Connect4 Wikiped
   [pyfiglet](https://www.geeksforgeeks.org/python-ascii-art-using-pyfiglet-module/) used to create ASCII art text in
   display_intro() method of Board Class and play_again() method of Board Class.  
     
+  #### Version Control
+  Git is an open source version control system and was used for this project. Github was used to store the repository.   
+  Git is run locally whereas Github is cloud based.
+    
+  ###### Forking
+  Forking a Github repository is the process of making a copy of any repository that you can use without affecting the original, this original is known as the 
+  "upstream repository".
+  The process for forking a repository is set out below.
+  1. Go to the Github page that hosts the repository you wish to fork.
+  1. On the top-right of the page there is a button "Fork".
+  1. Click this button.
+  1. This creates a repository in your Github home page which is a copy of the original. You can submit and receive changes to the code by using pull requests 
+  and/or syncing with the upstream repository.
+    
+  (Taken from the Github Docs guide "Forking Projects")
+    
+###### Cloning 
+  Cloning a repository involves making a full copy of that repository on your local machine. This makes working on the code easier.  Changes can be pushed back up to the 
+  GitHub site or changes from other sources pulled to your local copy. To make a clone follow the process below.
+  1. Goto the repository page on GitHub.
+  1. Above the file list click on the green button titled "Code".
+  1. You can choose to download a zip file of the repository, unpack it on your local machine and open it in your IDE or,
+  1. Clone using HTTPS by copying the URL under the HTTPS tab.
+  1. Open a terminal window, set current directory to the one you want to contain the clone.
+  1. Type `git clone `and paste the URL copied from the GitHub page.
+  1. The repository clone will be created on your machine.
+    
+  (Taken from the Github Docs guide "Cloning a repository")
+    
+  
+  #### Data Model  
+    
+  I used Object Oriented Programming to develop this program.  There are four classes used in the program namely:
+  - Board; a class used to represent the game board and methods relating to it.
+  - Player; a class used to represent the two players in the game and methods associated with them.
+  - ColumnFullError; used to raise an error if a play column is full.
+  - ClearMixin; this class is used to clear the terminal. It is passed to both the Player and Board Class as a required parameter.  
     
   
   #### Applications Used
@@ -262,7 +400,7 @@ I changed the button colour to blue. This adjusted site produced no errors, resu
    
     
   ### Issues
-  If the deployed game is left unattended for any period of time, it freezes and will not take input. The browser needs to be refreshed or the 'Run Program' button clicked to start a new game.  This is not an issue on a locally run version of the game. I do not know why this is happening.  
+  If the deployed game is left unattended for any period of time, it will sometimes freeze and will not take input. The browser needs to be refreshed or the 'Run Program' button clicked to start a new game.  This is not an issue on a locally run version of the game. I do not know why this is happening.  
     
 If the human player is drawn to take first turn it is still quite easy to win the game. Because the computer always scores the board using the same method it is possible to build up an knowledge as to where the piece will be placed. After repeated games it is possible to learn ways of winning every time.  
     
@@ -315,7 +453,7 @@ To deploy my project I followed the steps below.
   ![a screen shot of the repo name input area](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/reponame-pp3.png)  
 1. Click 'Connect'.
 1. Choose either `Enable Automatic Deploys` or `Deploy Branch'.  I chose the former.
-1. The site should now be deployed.  Click the 'Overview' tab and the 'Latest activity' should ahve a 'build succeeded' message diplayed.
+1. The site should now be deployed.  Click the 'Overview' tab and the 'Latest activity' should have a 'build succeeded' message diplayed.
    The deployment log can be also accessed on the github repository under the 'Environments' section to the right of the page.
   
 ![a screen shot of the buid succeeded](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/buildsucceeded-pp3.png)
@@ -340,110 +478,7 @@ To deploy my project I followed the steps below.
   Huge thanks to my CI Mentor Mr. Benjamin Kavanagh.
 </details>
 
- # Note on Difficulty Options  
  
- <details>
-  <summary>Difficulty Levels</summary>
-  
-The computer moves are calculated in different ways for each of the levels.    
-  
-The first (easy level) is completely random, a random number is picked in the column range and provided that column has remaining space, the piece is dropped there.  
-  
-The medium and hard levels use a simple scoring scheme which gives every position on the board a score based on that particular moves value to the computer player.  
-The piece is dropped in the column with the highest score.  
-All possible positions are scored on the hard level, some of the diagonal line slices are not scored on the medium level, thereby creating a "blind spot" for the computer.  
-  
-This method of scoring is by no means perfect but offers a reasonable challenge to the casual player.  
-  
-Details of how I implemented this scoring scheme are given below, I should say that the general method I learned from various resources on the internet but the implementation is my own.  I choose to place an token (in my case '*' into the temporary board for scoring which I did not see any other implementation use (others placed their player piece), this allowed me to be more specific in the scoring process.  As to the merits or disadvantages of this way of doing it I have not tested.
-
-###### Easy Level
-  
-  This method picks a column for the computer player on easy difficulty level.
-  
-  If the choosen column not full:  
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pick a random column number in range zero to six  
-      return that column number  
-  
-    
-###### Medium Level
-  
-  These are the steps I used to pick a column for the computer player on medium difficulty level.
-    
-  **computer_move_scored() Method of Player Class**  
-  
-  Determine opposing player piece type, store in op_piece.  
-  Determine columns which are not full, store in an array valid_cols, with a -1 entry if column full.  
-  Determine first available position in each column, store in an array first_available_row.  
-  For each valid column in valid_cols:  
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make a deepcopy of state of the playing board named temp_board.  
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Place a '*' into the lowest empty position of that column.  
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send temp_board to player.scoring_function method.  
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Append returned score to final_scores array.  
-  Determine index of highest score in final_scores array, store in variable col.  
-  Return col.    
-    
-    
-
- **player.scoring_function Method of Player Class** 
-    
-  Create score variable  
-  For each row in temp_board:  
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create an array for each row called row_array  
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For each row_array:  
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slice into sections of four positions, stored in array called slice4.  
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send each slice4 to player.scoring_logic.  
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add returned value to score.  
-    
-  For each column in temp_board:  
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create an array for each column called column_array  
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For each column_array:  
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slice into sections of four positions, stored in array called slice4.  
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send each slice4 to player.scoring_logic.  
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add returned value to score.    
-    
-  For each forward-leaning diagonal column (left-hand side) in temp_board:  
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create an array for each section called diagfor_array  
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For each diagfor_array:  
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slice into sections of four positions, stored in array called slice4.  
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send each slice4 to player.scoring_logic.  
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add returned value to score.    
-    
-  For each backward-leaning diagonal column(right-hand side) in temp_board:  
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create an array for each row called diagback_array  
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For each diagback_array:  
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slice into sections of four positions, stored in array called slice4.  
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send each slice4 to player.scoring_logic.  
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add returned value to score.  
-  Return score  
-    
-    
- **player.scoring_logic Method of Player Class** 
-    
-  Create score variable.  
-  Add value to score for each slice4 on the following basis.  
-  If slice4 contains:  
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 player pieces and 1  asterisk  add 2000  
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 player pieces and 1  asterisk add 1000  
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 player piece and 3 empty add 100  
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Is column 3 add 50.  
-  
-  If slice4 contains:  
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 op_piece and 1 asterisk add 10000  
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 op_piece and 1 empty add 2000  
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 op_piece add 1500  
-    
-  If slice4 contains op-pieces in the middle indexes and an asterisk at either index[0] or index[3] add 7000.  
-  Return score  
-    
-  
-  
-  ###### Hard Level
-  
-  The steps are the same as the medium level except all diagonal columns are scored.
-
-</details>
-  
 
 
 
