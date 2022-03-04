@@ -473,7 +473,7 @@ class Board(ClearMixin):
             if lowerans == "quit":
                 valid_input = True
                 print('\033[31m')
-                bye = pyfiglet.figlet_format("                    BYE BYE  ")
+                bye = pyfiglet.figlet_format("                     BYE BYE  ")
                 print(bye)
                 print('\033[39m')
                 print("                    THANKS FOR " +
