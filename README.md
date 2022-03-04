@@ -400,7 +400,7 @@ I changed the button colour to blue. This adjusted site produced no errors, resu
    
     
   ### Issues
-  If the deployed game is left unattended for any period of time, it will sometimes freeze and will not take input. The browser needs to be refreshed or the 'Run Program' button clicked to start a new game.  This is not an issue on a locally run version of the game. I do not know why this is happening.  
+  If the deployed game is left unattended for any period of time, it will sometimes freeze and will not take input. The browser needs to be refreshed or the 'Run Program' button clicked to start a new game.  This is not an issue on a locally run version of the game. I believe this may be due to the way heroku refreshed its dyno's.  
     
 If the human player is drawn to take first turn it is still quite easy to win the game. Because the computer always scores the board using the same method it is possible to build up an knowledge as to where the piece will be placed. After repeated games it is possible to learn ways of winning every time.  
     
