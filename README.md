@@ -133,7 +133,7 @@ More information regarding the game can be found at this link. [Connect4 Wikiped
   If the User opts to exit the finish screen is displayed and the program exits,  
   alternatively the program loops back to the welcome screen and a new game is initiated.
     
-  ![a screenshot of the game over screen](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-revisedscreenshots/bluequitscreen-pp3.png)  
+  ![a screenshot of the game over screen](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-revisedscreenshots/bluequitscreen.png)  
     
     
   ### Finish Screen
@@ -260,6 +260,11 @@ Details of how I implemented this scoring scheme are shown in the pseudocode bel
   - Python
   - CSS  
   
+  #### Developement Environment
+    
+  I used the python-essentials-template for gitpod provided by Code Institute.  
+  
+  
   #### Python Libraries
   
   [random](https://docs.python.org/3/library/random.html) was used to generate a random integer
@@ -329,7 +334,6 @@ Details of how I implemented this scoring scheme are shown in the pseudocode bel
   - [favICO.com](https://convertico.com/favicon/) used for creating favicon.
   - [W3 Validator](https://jigsaw.w3.org/css-validator/) used to test css code.
   - [pep8online](http://pep8online.com/) pep8online used to validate python code
-  - [WAVE](https://wave.webaim.org/) used to check for accessibility.
   - [Windows snip & sketch](https://www.microsoft.com/en-us/p/snip-sketch/9mz95kl8mr0l?activetab=pivot:overviewtab) used to capture screenshots for readme file.
   - [techsini.com](https://techsini.com/) used to create the mock-up used in the readme file.
   
@@ -346,6 +350,7 @@ Details of how I implemented this scoring scheme are shown in the pseudocode bel
 ### WAVE Accessibilty Tool
   The deployed version was tested using this site. The first test produced one contrast error, caused by the red colour of the 'Run Program' button not contrasting well with the background image I had choosen.  
 I changed the button colour to blue. This adjusted site produced no errors, result is shown below.  
+Please note the Wave result is similar when the adjusted background version is used.
     
   ![a screen shot of the WAVE test result](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/waveresult-pp3.png)  
     
@@ -411,7 +416,9 @@ If the human player is drawn to take first turn it is still quite easy to win th
     
     
   ### Video Screen Capture Of Deployed Heroku APP.
-    This video clip shows the deployed app working. Please note that the original background is used in this clip, the final deployed app has a plain blue background.
+  
+  
+  This video clip shows the deployed app working. Please note that the original background is used in this clip, the final deployed app has a plain blue background.
     
   
 
@@ -465,7 +472,7 @@ To deploy my project I followed the steps below.
   
 [The site is now live](https://minipproject.herokuapp.com/)
   
-![a picture of the deployed site](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/deployedheroku-pp3.png)
+![a picture of the deployed site](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-revisedscreenshots/blueinitialscreen-pp3.png)
 
 
 </details>
