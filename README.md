@@ -8,7 +8,7 @@ The deployed site can be found [here](https://minipproject.herokuapp.com/)
 Github repository can be accessed [here](https://github.com/bobshort4bobby4/Connect4-PP3)   
   
     
-![a mockup of the deployed application](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/mockup-pp3.png)
+![a mockup of the deployed application](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-revisedscreenshots/bluemockup-pp3.png)
   
     
       
@@ -85,6 +85,8 @@ More information regarding the game can be found at this link. [Connect4 Wikiped
   ### Background Image
   
   In order to add visual appeal I used a repeating tile as a background image.  It is a picture of a section of the gameboard.  
+  After deployment, taking feedback from PP2 into account I decided not to use this image and replaced it with a plain blue background.  
+
   
   [Link to background tile](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv1hN01fHPr6M-NnNxNb7mD1u5nlTCVo1F7A&usqp=CAU)  
     
@@ -105,7 +107,7 @@ More information regarding the game can be found at this link. [Connect4 Wikiped
   On loading the initial screen displays a title in ASCII art and some background information about the game. Brief play instructions are also included. 
   The game pauses on this screen untill the user hits the return key.
     
-  ![a screen shot of the welcome screen](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/welcomescreen-pp3.png)
+  ![a screen shot of the welcome screen](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-revisedscreenshots/blueinitialscreen-pp3.png)
     
   ### Level Screen
   When the User presses the return key, the level screen is displayed.  
@@ -113,7 +115,7 @@ More information regarding the game can be found at this link. [Connect4 Wikiped
   This setting governs how the computer moves are picked.  
   The User is required to pick one from the three options of Easy, Medium or Hard.  
     
-  ![a screenshot of the levelscreen](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/difflevelinput-pp3.png)  
+  ![a screenshot of the levelscreen](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-revisedscreenshots/bluelevelscreen-pp3.png)  
     
  After the User picks a level the screen shows which player is to go first (randomly choosen by program), then pauses before clearing and displaying the initial board.
   
@@ -121,7 +123,7 @@ More information regarding the game can be found at this link. [Connect4 Wikiped
   The game screen consists of the board display and a prompt to the User to pick a move.   
   The computer moves happen instantly after each User move.  
     
-  ![a screen shot of the initial game screen](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/initialscreen-pp3.png)  
+  ![a screen shot of the initial game screen](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-revisedscreenshots/bluegamescreen-pp3.png)  
     
     
   ### Game Over
@@ -131,13 +133,13 @@ More information regarding the game can be found at this link. [Connect4 Wikiped
   If the User opts to exit the finish screen is displayed and the program exits,  
   alternatively the program loops back to the welcome screen and a new game is initiated.
     
-  ![a screenshot of the game over screen](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/gamewon-pp3.png)  
+  ![a screenshot of the game over screen](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-revisedscreenshots/bluequitscreen-pp3.png)  
     
     
   ### Finish Screen
   If the User opts to quit a message is displayed and the program finishes.  
     
-  ![a screen shot of the finish message](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/finishscreen-pp3.png)  
+  ![a screen shot of the finish message](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-revisedscreenshots/bluebyebyescreen-pp3.png)  
     
     
   ### Difficulty Levels
@@ -276,6 +278,9 @@ Details of how I implemented this scoring scheme are shown in the pseudocode bel
   #### Version Control
   Git is an open source version control system and was used for this project. Github was used to store the repository.   
   Git is run locally whereas Github is cloud based.
+
+  Please note feedback from PP2 regarding git commit messages was received after this project was completed.  Unfortunately I was not able to implement the changes 
+  suggested as commits had been made.
     
   ###### Forking
   Forking a Github repository is the process of making a copy of any repository that you can use without affecting the original, this original is known as the 
@@ -355,7 +360,7 @@ I changed the button colour to blue. This adjusted site produced no errors, resu
 ### LightHouse Testing
   The Lighthouse testing tool built in to the Chrome browser was used on the deployed web-site. A screen shot of the result is shown below.  
   
-  ![a screen shot of the lighthouse testing result](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/lighthouseresult-pp3.png)
+  ![a screen shot of the lighthouse testing result](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-revisedscreenshots/bluelighthouse-pp3.png)
   
   
 ### Manual Validation of User Input
@@ -406,7 +411,7 @@ If the human player is drawn to take first turn it is still quite easy to win th
     
     
   ### Video Screen Capture Of Deployed Heroku APP.
-    
+    This video clip shows the deployed app working. Please note that the original background is used in this clip, the final deployed app has a plain blue background.
     
   
 
