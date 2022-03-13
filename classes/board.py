@@ -149,7 +149,7 @@ class Board(ClearMixin):
         question2 = pyfiglet.figlet_format(" 1. Easy ")
         question3 = pyfiglet.figlet_format(" 2. Medium")
         question4 = pyfiglet.figlet_format(" 3. Hard")
-        print("THREE DIFFICULTY LEVELS ARE AVAILABLE ")
+        # print("THREE DIFFICULTY LEVELS ARE AVAILABLE ")
         print(question2, question3, question4)
         cond = True
 
