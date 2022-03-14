@@ -355,7 +355,7 @@ Please note the Wave result is similar when the adjusted background version is u
   ![a screen shot of the WAVE test result](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/images/readme-screenshots/waveresult-pp3.png)  
     
 ### CSS Validation  
-  I made minimal changes to the css integral to  the template provided, namely changes to the positioning of the terminal, adding a background image and changing the colour of the 'Run Program' to blue.  I tested the `body` and `button` css fragments using the w3c validator and no errors or warning were generated.
+  I made minimal changes to the css integral to  the template provided, namely changes to the positioning of the terminal, adding a background colour and changing the colour of the 'Run Program' to blue.  I tested the `body` and `button` css fragments using the w3c validator and no errors or warning were generated.
    
    
 ### PeP8 Linter
