@@ -360,7 +360,7 @@ Please note the Wave result is similar when the adjusted background version is u
    
 ### PeP8 Linter
   I submitted all python files to pep8online.com and cleared all errors and warnings.  
-  Screen shots of the results can be found [here](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/pep8linter.md)
+  Screen shots of the results can be found [here](https://github.com/bobshort4bobby4/Connect4-PP3/blob/main/assets/pep8linter.md)
   
 ### LightHouse Testing
   The Lighthouse testing tool built in to the Chrome browser was used on the deployed web-site. A screen shot of the result is shown below.  

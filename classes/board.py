@@ -156,7 +156,7 @@ class Board(ClearMixin):
         # takes in amd validates level from the user
         while cond:
             try:
-                ans = int(input("Enter 1 for Easy," +
+                ans = int(input("Enter 1 for Easy, " +
                                 "2 for Medium or 3 for Hard :\n"))
                 if type(int(ans)) is int and ans == 1 or ans == 2 or ans == 3:
                     cond = False
@@ -468,8 +468,8 @@ class Board(ClearMixin):
         # accepts user input and validates it
         while not valid_input:
             ans = input(
-                        "Enter 'Quit' to finish or" +
-                        "'again' to play again : \n ")
+                        "Enter 'quit' to finish or" +
+                        " 'again' to play again : \n ")
             lowerans = ans.lower()
             # if user wants to quit print messsage and exit
             if lowerans == "quit":
