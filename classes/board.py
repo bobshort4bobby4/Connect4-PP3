@@ -469,7 +469,7 @@ class Board(ClearMixin):
         while not valid_input:
             ans = input(
                         "Enter 'quit' to finish or" +
-                        " 'again' to play again : \n ")
+                        " 'again' to play again :\n")
             lowerans = ans.lower()
             # if user wants to quit print messsage and exit
             if lowerans == "quit":
