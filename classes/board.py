@@ -166,10 +166,10 @@ class Board(ClearMixin):
                     raise TypeError("Only integers are allowed")
 
             except TypeError:
-                print("  Please enter the digit 1," +
+                print("Please enter the digit 1," +
                       "the digit 2 or the digit 3. ")
             except ValueError:
-                print("  Please enter the digit 1," +
+                print("Please enter the digit 1," +
                       "the digit 2 or the digit 3.")
 
         # change back to default colour
@@ -247,11 +247,13 @@ class Board(ClearMixin):
         # set col to invalid value to ensure while loop is run at least once
         col = 11
         # takes in players choice of column and validates it
+        new_line = '\n'
         while(col < 0) or(col > 6):
             try:
                 print("")
-                print(" ", player.name, "!")
-                col = int(input(f"  Pick a column to drop an {player.piece} "))
+                print(player.name, "!")
+                col = int(input(
+                    f"Pick a column to drop an {player.piece}{new_line}"))
 
                 if col < 0 or col > 6:
                     # checks if input number is within valid range
@@ -262,10 +264,10 @@ class Board(ClearMixin):
                     raise CustomError.ColumnFullError
 
             except ValueError:
-                    print("  Enter a NUMBER in range 0-6")
+                    print("Enter a NUMBER in range 0-6")
 
             except CustomError.ColumnFullError:
-                    print("  Column full")
+                    print("Column full")
 
             except IndexError:
                     print("  Enter a NUMBER in range 0-6")
@@ -317,8 +319,8 @@ class Board(ClearMixin):
         if temp > 0:
             self.game_Over = False
         else:
-            print("  The game is a DRAW!.")
-            print(f"  You have taken {player.player_moves} moves in this game")
+            print("The game is a DRAW!.")
+            print(f"You have taken {player.player_moves} moves in this game")
             self.game_Over = True
 
     def check_win(self, board, player):
@@ -357,9 +359,9 @@ class Board(ClearMixin):
                     self.board[i][j+3] = '\033[31m' + player.piece + \
                         '\033[39m'
                     self.draw_board()
-                    print('\033[0;32m' + f"  {player.piece} has won! "
+                    print('\033[0;32m' + f"{player.piece} has won! "
                           f"Congratulations {player.name}")
-                    print(f"  {player.name}! "
+                    print(f"{player.name}! "
                           f"You have taken {player.player_moves} moves"
                            " in this game" + '\033[39m')
                     self.game_Over = True
@@ -382,9 +384,9 @@ class Board(ClearMixin):
                     self.board[j+3][i] = '\033[31m' + player.piece + \
                         '\033[39m'
                     self.draw_board()
-                    print('\033[0;32m' + f"  {player.piece} has won! "
+                    print('\033[0;32m' + f"{player.piece} has won! "
                           f"Congratulations {player.name}")
-                    print(f"  {player.name}! "
+                    print(f"{player.name}! "
                           f"You have taken {player.player_moves} moves"
                            " in this game" + '\033[39m')
                     self.game_Over = True
@@ -407,9 +409,9 @@ class Board(ClearMixin):
                     self.board[i-3][j+3] = '\033[31m' + player.piece + \
                         '\033[39m'
                     self.draw_board()
-                    print('\033[0;32m' + f"  {player.piece} has won! "
+                    print('\033[0;32m' + f"{player.piece} has won! "
                           f"Congratulations {player.name}")
-                    print(f"  {player.name}! "
+                    print(f"{player.name}! "
                           f"You have taken {player.player_moves} moves"
                            " in this game" + '\033[39m')
                     self.game_Over = True
@@ -434,9 +436,9 @@ class Board(ClearMixin):
                         self.board[i-3][j-3] = '\033[31m' + player.piece + \
                             '\033[39m'
                         self.draw_board()
-                        print('\033[0;32m' + f"  {player.piece} has won! "
+                        print('\033[0;32m' + f"{player.piece} has won! "
                               f"Congratulations {player.name}")
-                        print(f"  {player.name}! "
+                        print(f"{player.name}! "
                               f"You have taken {player.player_moves} moves"
                               " in this game" + '\033[39m')
                         self.game_Over = True
@@ -466,8 +468,8 @@ class Board(ClearMixin):
         # accepts user input and validates it
         while not valid_input:
             ans = input(
-                        "  Enter 'Quit' to finish or" +
-                        " 'again' to play again : \n")
+                        "Enter 'Quit' to finish or" +
+                        "'again' to play again : \n ")
             lowerans = ans.lower()
             # if user wants to quit print messsage and exit
             if lowerans == "quit":
