@@ -129,7 +129,7 @@ class Board(ClearMixin):
         self.clrscr()
         # change colour
         print('\033[93m')
-        title = pyfiglet.figlet_format("                    Connect 4")
+        title = pyfiglet.figlet_format("                  Connect 4")
         print(title)
         print("  A version of the classic board game 'Connect4'," +
               "first sold in 1974.")
