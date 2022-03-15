@@ -260,7 +260,7 @@ Details of how I implemented this scoring scheme are shown in the pseudocode bel
   - Python
   - CSS  
   
-  #### Developement Environment
+  #### Development Environment
     
   I used the python-essentials-template for gitpod provided by Code Institute.  
   
@@ -485,6 +485,8 @@ To deploy my project I followed the steps below.
   <summary>Credits</summary>
   
   In order to learn how computers play against human opponents I used many resources on the internet, chief amongst these were [Wikipedia](https://en.wikipedia.org/wiki/Category:Game_artificial_intelligence) and [Keith Galli's github](https://github.com/KeithGalli?tab=repositories).   
+    
+  The format and method for the user input testing was learnt from a tutorial by [Daisy Mc Girr](https://www.youtube.com/watch?v=vAc9gRfrDb4).
   
   
   Huge thanks to my CI Mentor Mr. Benjamin Kavanagh.
